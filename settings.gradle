@@ -1,0 +1,20 @@
+enableFeaturePreview('VERSION_CATALOGS')
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+
+rootProject.name = "Android-新框架"
+// libraries ----------------------------------------------------------
+include ':libraries:lib-deps'
+
+// products -----------------------------------------------------------
+// app demo compose 工程
+include ':products:demo:compose:app-demo-compose'
+// app icon generator 工程
+include ':products:icon-generator:app-icon-generator'
