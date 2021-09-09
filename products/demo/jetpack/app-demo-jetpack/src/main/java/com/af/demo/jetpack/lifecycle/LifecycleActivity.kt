@@ -1,14 +1,11 @@
 package com.af.demo.jetpack.lifecycle
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.af.demo.jetpack.R
+import com.af.demo.jetpack.lifecycle.observer.ActivityObserver
 
 /**
  * Created by hayukleung@gmail.com on 2021-09-09.
@@ -22,6 +19,14 @@ class LifecycleActivity : AppCompatActivity() {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragment_holder, LifecycleFragment())
             fragmentTransaction.commit()
+        }
+        findViewById<AppCompatButton>(R.id.button_start_service).setOnClickListener {
+            val intent = Intent(this, LifecycleService::class.java)
+            startService(intent)
+        }
+        findViewById<AppCompatButton>(R.id.button_stop_service).setOnClickListener {
+            val intent = Intent(this, LifecycleService::class.java)
+            stopService(intent)
         }
         lifecycle.addObserver(ActivityObserver())
     }

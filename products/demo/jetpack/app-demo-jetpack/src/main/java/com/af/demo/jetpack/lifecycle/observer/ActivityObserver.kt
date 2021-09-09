@@ -1,4 +1,4 @@
-package com.af.demo.jetpack.lifecycle
+package com.af.demo.jetpack.lifecycle.observer
 
 import android.util.Log
 import androidx.lifecycle.Lifecycle
@@ -8,7 +8,7 @@ import androidx.lifecycle.OnLifecycleEvent
 /**
  * Created by hayukleung@gmail.com on 2021-09-09.
  */
-class FragmentObserver : LifecycleObserver {
+class ActivityObserver : LifecycleObserver {
 
     private val TAG = this.javaClass.name
 

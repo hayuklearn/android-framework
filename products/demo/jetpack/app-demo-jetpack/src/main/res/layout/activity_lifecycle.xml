@@ -18,6 +18,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/button_show_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/button_start_service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_start_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start_service"
+        app:layout_constraintBottom_toTopOf="@+id/button_stop_service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_stop_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_stop_service"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

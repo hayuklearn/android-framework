@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.af.demo.jetpack.R
+import com.af.demo.jetpack.lifecycle.observer.FragmentObserver
 
 /**
  * Created by hayukleung@gmail.com on 2021-09-09.

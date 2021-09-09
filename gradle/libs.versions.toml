@@ -34,6 +34,7 @@ lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", ver
 lifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 lifecycleViewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycleProcess = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
+lifecycleService = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle" }
 lifecycleCompiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
 
 workRuntimeKtx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
@@ -60,7 +61,7 @@ espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
 
 [bundles]
 compose = ["composeUi", "composeUiToolingPreview", "composeMaterial", "composeActivity"]
-lifecycle = ["lifecycleRuntimeKtx", "lifecycleLivedataKtx", "lifecycleViewmodelKtx", "lifecycleProcess"]
+lifecycle = ["lifecycleRuntimeKtx", "lifecycleLivedataKtx", "lifecycleViewmodelKtx", "lifecycleProcess", "lifecycleService"]
 work = ["workRuntimeKtx", "workRxjava2", "workGcm", "workMultiprocess"]
 room = ["roomRuntime", "roomRxjava2", "roomPaging"]
 nav = ["navigationFragmentKtx", "navigationUiKtx", "navigationDynamicFeaturesFragment", "navigationCompose"]

@@ -2,6 +2,7 @@ package com.af.demo.jetpack.lifecycle
 
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.af.demo.jetpack.lifecycle.observer.ApplicationObserver
 
 /**
  * Created by hayukleung@gmail.com on 2021-09-09.
