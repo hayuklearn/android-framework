@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">demo</string>
+    <string name="button_show_fragment">打开 Lifecycle Fragment</string>
+    <string name="button_hide_fragment">关闭 Lifecycle Fragment</string>
 </resources>
