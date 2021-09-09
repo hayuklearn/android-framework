@@ -4,4 +4,7 @@
     <string name="button_hide_fragment">关闭 Lifecycle Fragment</string>
     <string name="button_start_service">启动 Lifecycle Service</string>
     <string name="button_stop_service">关闭 Lifecycle Service</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_go_navigation_sub_fragment">Go Navigation Sub Fragment</string>
 </resources>
