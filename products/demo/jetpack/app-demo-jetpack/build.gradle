@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+// import groovy.transform.Field
+
+// @Field String root = "products/demo"
+// @Field String versionGradle = root + "/version.gradle"
+// apply from: "${project.rootProject.file(versionGradle)}"
+
+android {
+
+    compileSdk libs.versions.compileSdk.get().toInteger()
+    // old
+    // compileSdkVersion rootProject.ext.compile_sdk_version
+    // buildToolsVersion rootProject.ext.build_tools_version
+
+    defaultConfig {
+        applicationId "com.af.demo.jetpack"
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode 1
+        versionName '1.0'
+        // old
+        // minSdkVersion rootProject.ext.min_sdk_version
+        // targetSdkVersion rootProject.ext.target_sdk_version
+        // versionCode version_code
+        // versionName version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose false
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.compose.get()
+        kotlinCompilerVersion libs.versions.kotlin.get()
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    // implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // implementation project(':libraries:lib-deps')
+
+    implementation libs.appcompat
+
+    implementation libs.bundles.lifecycle
+    annotationProcessor libs.lifecycleCompiler
+
+    // material ------------------------------------------------------------------------------------
+    implementation libs.material
+}

@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.af.demo.compose.ui.theme.AndroidComposeTheme
-import java.io.File
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class EntryActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +29,6 @@ class EntryActivity : ComponentActivity() {
           Greeting("Android")
         }
       }
-    }
-    val files = File("D:\\").listFiles()
-    files?.map {
-      println(it)
     }
   }
 }
@@ -87,3 +83,4 @@ fun Counter() {
 fun CounterPreview() {
   Counter()
 }
+

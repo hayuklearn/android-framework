@@ -16,5 +16,6 @@ include ':libraries:lib-deps'
 // products -----------------------------------------------------------
 // app demo compose 工程
 include ':products:demo:compose:app-demo-compose'
+include ':products:demo:jetpack:app-demo-jetpack'
 // app icon generator 工程
 include ':products:icon-generator:app-icon-generator'
