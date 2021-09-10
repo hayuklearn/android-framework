@@ -12,6 +12,7 @@ dependencyResolutionManagement {
 rootProject.name = "Android-新框架"
 // libraries ----------------------------------------------------------
 include ':libraries:lib-deps'
+include ':libraries:lib-utils'
 
 // products -----------------------------------------------------------
 // app demo compose 工程

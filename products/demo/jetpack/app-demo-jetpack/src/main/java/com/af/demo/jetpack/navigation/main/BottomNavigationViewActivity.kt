@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import com.af.lib.utils.Android
 
 
 /**
@@ -32,6 +33,9 @@ class BottomNavigationViewActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         // step 3
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+        Android.signature(this, packageName)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

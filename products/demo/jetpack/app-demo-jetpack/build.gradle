@@ -55,6 +55,8 @@ dependencies {
 
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation project(':libraries:lib-utils')
+
     implementation libs.appcompat
 
     implementation libs.bundles.lifecycle

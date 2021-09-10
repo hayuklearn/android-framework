@@ -2,7 +2,7 @@
 frameworkVersionCode = "1"
 frameworkVersionName = "0.0.1"
 
-compileSdk = "31"
+compileSdk = "30"
 minSdk = "21"
 targetSdk = "30"
 buildTools = "30.0.3"
