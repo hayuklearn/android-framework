@@ -17,7 +17,7 @@ class Android {
     companion object {
 
         @SuppressLint("PackageManagerGetSignatures")
-        fun signature(context: Context, packageName: String) {
+        fun signature(context: Context, packageName: String) : String {
 
             val signatureArray: Array<Signature>
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -42,6 +42,7 @@ class Android {
                     md5(signature.toByteArray())
                 )
             }
+            return md5(signatureArray[0].toByteArray())
         }
 
         private fun md5(source: ByteArray): String {

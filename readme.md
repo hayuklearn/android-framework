@@ -6,11 +6,13 @@
 
 ### 工程依赖包
 
-- dependencies
+|- dependencies
 
 ### 依赖库
 
-- libraries
+|- libraries
+  |- lib-deps
+  |- lib-utils
 
 ### 产品
 
@@ -18,5 +20,8 @@
   |- demo
     |- compose
       |- app-demo-compose
-  |- icon-generator
+    |- jetpack
+      |- app-demo-jetpack
+  |- tool
+    |- app-icon-generator
 

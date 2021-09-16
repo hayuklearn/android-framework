@@ -19,4 +19,5 @@ include ':libraries:lib-utils'
 include ':products:demo:compose:app-demo-compose'
 include ':products:demo:jetpack:app-demo-jetpack'
 // app icon generator 工程
-include ':products:icon-generator:app-icon-generator'
+include ':products:tool:app-icon-generator'
+include ':products:tool:app-signature-viewer'

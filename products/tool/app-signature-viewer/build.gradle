@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        applicationId "com.yf.app_signature_viewer"
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation project(':libraries:lib-utils')
+
+    // kotlin
+    // implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation libs.coreKtx
+    implementation libs.kotlinCoroutinesAndroid
+
+    implementation libs.appcompat
+
+    implementation libs.swipeRefreshLayout
+
+    implementation libs.bundles.lifecycle
+
+    // material
+    implementation libs.material
+
+    // test
+    testImplementation libs.junit
+    androidTestImplementation libs.androidTestJunit
+    androidTestImplementation libs.espressoCore
+}
