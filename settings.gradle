@@ -20,4 +20,4 @@ include ':products:demo:compose:app-demo-compose'
 include ':products:demo:jetpack:app-demo-jetpack'
 // app icon generator 工程
 include ':products:tool:app-icon-generator'
-include ':products:tool:app-signature-viewer'
+include ':products:tool:app-info-viewer'

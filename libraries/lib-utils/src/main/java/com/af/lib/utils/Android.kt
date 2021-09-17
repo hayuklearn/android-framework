@@ -10,14 +10,19 @@ import android.util.Log
 import java.security.MessageDigest
 
 /**
+ * Android 专用方法
+ *
  * Created by hayukleung@gmail.com on 2021-09-10.
  */
 class Android {
 
     companion object {
 
+        /**
+         * 计算应用签名
+         */
         @SuppressLint("PackageManagerGetSignatures")
-        fun signature(context: Context, packageName: String) : String {
+        fun signature(context: Context, packageName: String): String {
 
             val signatureArray: Array<Signature>
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -45,6 +50,9 @@ class Android {
             return md5(signatureArray[0].toByteArray())
         }
 
+        /**
+         * 计算 MD5
+         */
         private fun md5(source: ByteArray): String {
 
             val charArray = charArrayOf(
@@ -79,6 +87,14 @@ class Android {
                 ++index
             }
             return String(temp)
+        }
+
+        /**
+         * dp 转 px
+         */
+        fun dp2px(context: Context, dp: Float): Int {
+
+            return (dp * context.resources.displayMetrics.density + 0.5f).toInt()
         }
     }
 }

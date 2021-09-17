@@ -1,7 +1,9 @@
-package com.yf.app_signature_viewer
+package com.af.app_info_viewer
 
+import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import com.af.lib.utils.Android
 import kotlin.collections.ArrayList
 
 /**
@@ -10,7 +12,7 @@ import kotlin.collections.ArrayList
 class ApkTool {
 
     companion object {
-        fun listInstalledPackages(packageManager: PackageManager): ArrayList<AppInfo> {
+        fun listInstalledPackages(context: Context, packageManager: PackageManager): ArrayList<AppInfo> {
             val list: ArrayList<AppInfo> = ArrayList()
             val packageList: List<PackageInfo> =
                 packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES)
@@ -23,7 +25,9 @@ class ApkTool {
                     //
                     packageInfo.packageName,
                     //
-                    packageInfo.applicationInfo.loadLabel(packageManager).toString()
+                    packageInfo.applicationInfo.loadLabel(packageManager).toString(),
+                    //
+                    Android.signature(context, packageInfo.packageName)
                 )
                 list.add(appInfo)
             }

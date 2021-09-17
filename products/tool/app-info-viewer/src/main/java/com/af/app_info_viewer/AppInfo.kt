@@ -1,4 +1,4 @@
-package com.yf.app_signature_viewer
+package com.af.app_info_viewer
 
 import android.graphics.drawable.Drawable
 
@@ -8,7 +8,8 @@ import android.graphics.drawable.Drawable
 class AppInfo(
      var image: Drawable,
      var packageName: String,
-     var appName: String
+     var appName: String,
+     var signature: String
 ) {
 
 }

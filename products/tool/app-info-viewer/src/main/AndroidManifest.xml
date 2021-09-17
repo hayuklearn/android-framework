@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yf.app_signature_viewer">
+    package="com.af.app_info_viewer">
 
     <application
         android:allowBackup="true"
