@@ -11,13 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android新框架">
 
-        <activity android:name=".ListActivity"
+        <activity
+            android:name=".ListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".moon_view.MoonViewActivity"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

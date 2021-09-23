@@ -1,6 +1,7 @@
 package com.af.app_view
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -12,6 +13,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.af.app_view.moon_view.MoonView
+import com.af.app_view.moon_view.MoonViewActivity
 import com.af.lib.utils.Android
 import kotlinx.coroutines.*
 
@@ -59,7 +62,7 @@ class ListActivity : AppCompatActivity() {
     private suspend fun run() = withContext(Dispatchers.IO) {
 
         val list = ArrayList<ViewInfo>()
-        list.add(ViewInfo("MonthView"))
+        list.add(ViewInfo("MoonView"))
         list.sortBy { it.viewName }
         return@withContext list
     }
@@ -105,6 +108,8 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.setOnClickListener {
             // TODO
+            val intent = Intent(itemView.context, MoonViewActivity::class.java)
+            itemView.context.startActivity(intent)
         }
     }
 }
