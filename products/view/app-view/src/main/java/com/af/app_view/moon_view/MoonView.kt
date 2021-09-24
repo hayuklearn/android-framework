@@ -3,10 +3,10 @@ package com.af.app_view.moon_view
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.af.app_view.R
+import kotlin.math.min
 
 /**
  * 月亮动画
@@ -27,18 +27,26 @@ class MoonView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defSty
 
     // ---------------------------------------------------------------------------------------------
 
-     var mRotate: Int = 0
+    var mRotate: Int = 0
         set(value) {
             field = value
             invalidate()
         }
-     var mPhase: Int = 0
+    var mPhase: Int = 0
         set(value) {
             field = value
             invalidate()
         }
 
     private val paint: Paint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
+
+    private val rectF: RectF by lazy { RectF() }
+    private val rectFCircle: RectF by lazy { RectF() }
+
+    private val PHASE_DURATION: Int by lazy { 100 }
+
+    private val porterDuffXfermodeDstOver: PorterDuffXfermode by lazy { PorterDuffXfermode(PorterDuff.Mode.DST_OVER) }
+    private val porterDuffXfermodeDstOut: PorterDuffXfermode by lazy { PorterDuffXfermode(PorterDuff.Mode.DST_OUT) }
 
     init {
         // Load attributes
@@ -51,6 +59,7 @@ class MoonView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defSty
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        // TODO
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -60,58 +69,66 @@ class MoonView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defSty
     override fun onDraw(canvas: Canvas?) {
 
         canvas?.let {
+            it.rotate(mRotate.toFloat(), width / 2F, height / 2F)
             // 黑色背景上面画了个橙色的正圆
             it.drawColor(ContextCompat.getColor(context!!, android.R.color.black))
-            val rectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+            rectF.set(0f, 0f, width.toFloat(), height.toFloat())
             paint.color = ContextCompat.getColor(context!!, android.R.color.holo_orange_light)
-            val radius = Math.min(width, height) * 0.3f
+            // 月球半径为宽度的 0.3 倍
+            val radius = min(width, height) * 0.3f
             it.drawCircle(rectF.centerX(), rectF.centerY(), radius, paint)
 
             val c = it.saveLayer(
-                RectF(0f, 0f, width.toFloat(), height.toFloat()),
+                rectF,
                 null
             )
             paint.isDither = true
-            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OVER)
+            paint.xfermode = porterDuffXfermodeDstOver
 
-            // 下面的这些计算跟mPhase的改变方式有关
-            // 首先mPhase 是由CountDownTimer进行修改的
+            // 下面的这些计算跟 mPhase 的改变方式有关
+            // 首先 mPhase 是由 CountDownTimer 进行修改的
             // 创建一个矩形，固定中心在屏幕中间
             val rectFOval = when {
-                mPhase > 150 -> {
-                    // 这里椭圆的 `Minor axis` 在变小   眉月 -> 上弦月
-                    RectF(
-                        rectF.centerX() - radius * (mPhase - 150) / 150,
+                mPhase > PHASE_DURATION -> {
+                    // 这里椭圆的`Minor axis`在变小
+                    // 眉月 -> 上弦月
+                    rectF.set(
+                        rectF.centerX() - radius * (mPhase - PHASE_DURATION) / PHASE_DURATION,
                         rectF.centerY() - radius,
-                        rectF.centerX() + radius * (mPhase - 150) / 150,
+                        rectF.centerX() + radius * (mPhase - PHASE_DURATION) / PHASE_DURATION,
                         rectF.centerY() + radius
                     )
+                    rectF
                 }
-                mPhase < 150 -> {
-                    // 这里椭圆的 `Minor axis` 在变大。上弦月 -> 盈凸月
-                    RectF(
-                        rectF.centerX() - (radius - radius * mPhase / 150),
+                mPhase < PHASE_DURATION -> {
+                    // 这里椭圆的`Minor axis`在变大
+                    // 上弦月 -> 盈凸月
+                    rectF.set(
+                        rectF.centerX() - (radius - radius * mPhase / PHASE_DURATION),
                         rectF.centerY() - radius,
-                        rectF.centerX() + (radius - radius * mPhase / 150),
+                        rectF.centerX() + (radius - radius * mPhase / PHASE_DURATION),
                         rectF.centerY() + radius
                     )
+                    rectF
                 }
                 else -> {
                     null
                 }
             }
 
-            val rectFCircle = RectF(
+            rectFCircle.set(
                 rectF.centerX() - radius,
                 rectF.centerY() - radius,
                 rectF.centerX() + radius,
                 rectF.centerY() + radius
             )
 
+            // val rectFCircle = rectFCircle
+
             paint.color = ContextCompat.getColor(context!!, android.R.color.black)
 
             when {
-                mPhase == 150 -> {
+                mPhase == PHASE_DURATION -> {
                     if (rectFOval != null) {
                         it.drawOval(rectFOval, paint)
                     }
@@ -119,11 +136,12 @@ class MoonView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defSty
                 }
                 mPhase == 0 -> {
                 }
-                mPhase < 150 -> {
+                mPhase < PHASE_DURATION -> {
                     // 先画半圆，再画椭圆
                     it.drawArc(rectFCircle, 90f, 180f, false, paint)
-                    // 当 'Minor axis' 的长度减少 0, 然后再增加。月相的变化是 眉月 -> 上弦月 -> 盈凸月
-                    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
+                    // 当`Minor axis`的长度减少到 0, 然后再增加
+                    // 眉月 -> 上弦月 -> 盈凸月
+                    paint.xfermode = porterDuffXfermodeDstOut
                     it.drawOval(rectFOval!!, paint)
                 }
                 else -> {
@@ -133,9 +151,9 @@ class MoonView(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defSty
             }
             paint.xfermode = null
             it.restoreToCount(c)
-            Log.d("LunarPhase", "mRotate=$mRotate")
+            // Log.d("LunarPhase", "mRotate=$mRotate")
             // Rotate the canvas. For recording preview.
-            it.rotate(mRotate.toFloat())
+            // it.rotate(mRotate.toFloat())
         }
     }
 }

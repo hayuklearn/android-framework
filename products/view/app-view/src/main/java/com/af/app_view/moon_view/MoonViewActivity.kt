@@ -21,11 +21,12 @@ class MoonViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moon_view)
-        moonView = findViewById<MoonView>(R.id.MoonView)
-
-        timer = object : CountDownTimer(30_000, 100L) {
+        moonView = findViewById(R.id.MoonView)
+        moonView?.mRotate = 30
+        timer = object : CountDownTimer(10_000, 50L) {
             override fun onTick(millisUntilFinished: Long) {
-                moonView?.mPhase = (millisUntilFinished / 100L).toInt()
+                moonView?.mPhase = (millisUntilFinished / 50L).toInt()
+                // Log.d("[debug]", "phase = " + moonView?.mPhase)
             }
 
             override fun onFinish() {
@@ -38,7 +39,7 @@ class MoonViewActivity : AppCompatActivity() {
         Log.d("MainActivity", "onConfigurationChanged#${newConfig.orientation}")
         super.onConfigurationChanged(newConfig)
         moonView?.mRotate =
-            if (newConfig?.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 90
             } else {
                 0
