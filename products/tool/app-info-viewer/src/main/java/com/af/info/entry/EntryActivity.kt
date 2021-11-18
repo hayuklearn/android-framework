@@ -3,6 +3,7 @@ package com.af.info.entry
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.af.info.ApkTool
 import com.af.info.app.InstalledAppListActivity
 import com.af.info.databinding.ActivityEntryBinding
 
@@ -23,6 +24,10 @@ class EntryActivity:AppCompatActivity() {
 
             val intent  = Intent(this@EntryActivity, InstalledAppListActivity::class.java)
             startActivity(intent)
+        }
+        binding.entryServiceList.setOnClickListener {
+
+            ApkTool.exec()
         }
     }
 }

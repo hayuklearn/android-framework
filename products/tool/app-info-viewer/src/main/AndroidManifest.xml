@@ -6,6 +6,7 @@
     <queries>
         <!-- <package android:name="*" /> -->
     </queries>
+    <uses-permission android:name="android.permission.DUMP" />
 
     <application
         android:allowBackup="true"
