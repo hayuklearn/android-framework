@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.af.info.ApkTool
 import com.af.info.app.InstalledAppListActivity
 import com.af.info.databinding.ActivityEntryBinding
+import com.af.info.service.RunningServiceListActivity
 
 /**
  *
@@ -27,7 +28,9 @@ class EntryActivity:AppCompatActivity() {
         }
         binding.entryServiceList.setOnClickListener {
 
-            ApkTool.exec()
+            // ApkTool.exec("dumpsys activity services | grep ServiceRecord | awk '{print \$4}' | sed 's/}//1g'")
+            val intent  = Intent(this@EntryActivity, RunningServiceListActivity::class.java)
+            startActivity(intent)
         }
     }
 }

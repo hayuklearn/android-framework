@@ -26,7 +26,6 @@ import java.lang.Exception
  */
 object ApkTool {
 
-
     fun listInstalledPackages(
         context: Context,
         packageManager: PackageManager
@@ -52,34 +51,17 @@ object ApkTool {
         return list
     }
 
-
-    fun shellExec() {
-        val runtime = Runtime.getRuntime()
-        try {
-            // Process 中封装了返回的结果和执行错误的结果
-            // val process = runtime.exec("su")
-            val process =
-                runtime.exec("su dumpsys activity services | grep ServiceRecord | awk '{print \$4}' | sed 's/}//1g'")
-                // runtime.exec("su")
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            val respBuff = StringBuffer()
-            val buff = CharArray(1024)
-            var ch: Int = 0
-            while (reader.read(buff).also { ch = it } != -1) {
-                respBuff.append(buff, 0, ch)
-            }
-            reader.close()
-            Log.d("[shell]", respBuff.toString())
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
-
-    fun exec() {
+    /**
+     * 执行终端命令
+     *
+     * @param cmd String val cmd = "dumpsys activity services | grep ServiceRecord | awk '{print \$4}' | sed 's/}//1g'"
+     * @return String 运行结果
+     */
+    fun exec(cmd: String): String {
+        var result: String
         var process: Process? = null
         var os: DataOutputStream? = null
         try {
-            val cmd = "dumpsys activity services | grep ServiceRecord | awk '{print \$4}' | sed 's/}//1g'"
             process = Runtime.getRuntime().exec("su")
             os = DataOutputStream(process.outputStream)
             os.writeBytes(cmd + "\n")
@@ -89,18 +71,20 @@ object ApkTool {
             val reader = BufferedReader(InputStreamReader(process.inputStream))
             val respBuff = StringBuffer()
             val buff = CharArray(65536)
-            var ch: Int = 0
+            var ch: Int
             while (reader.read(buff).also { ch = it } != -1) {
                 respBuff.append(buff, 0, ch)
             }
             reader.close()
+            result = respBuff.toString()
             Log.d("[shell]", respBuff.toString())
             process.waitFor()
         } catch (e: Exception) {
+            result = Log.getStackTraceString(e)
         } finally {
             os?.close()
             process?.destroy()
         }
+        return result
     }
-
 }

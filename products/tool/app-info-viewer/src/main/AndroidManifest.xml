@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android新框架">
 
-        <activity android:name=".entry.EntryActivity"
+        <activity
+            android:name=".entry.EntryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +28,12 @@
 
         <activity
             android:name=".app.InstalledAppListActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".service.RunningServiceListActivity"
             android:exported="true">
 
         </activity>
