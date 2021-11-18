@@ -1,9 +1,11 @@
-package com.af.app_info_viewer
+package com.af.info.app
 
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,13 +18,18 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.af.info.ApkTool
+import com.af.info.R
 import com.af.lib.utils.Android
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by hayukleung@gmail.com on 2021-09-16.
  */
-class ListActivity : AppCompatActivity() {
+class InstalledAppListActivity : AppCompatActivity() {
 
     private lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
     private lateinit var mRecyclerView: RecyclerView
@@ -30,7 +37,7 @@ class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list)
+        setContentView(R.layout.activity_installed_app_list)
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout)
         mSwipeRefreshLayout.setOnRefreshListener {
             refresh()
@@ -62,7 +69,7 @@ class ListActivity : AppCompatActivity() {
 
     private suspend fun run() = withContext(Dispatchers.IO) {
 
-        val list = ApkTool.listInstalledPackages(this@ListActivity, packageManager)
+        val list = ApkTool.listInstalledPackages(this@InstalledAppListActivity, packageManager)
         list.sortBy { it.appName }
         return@withContext list
     }

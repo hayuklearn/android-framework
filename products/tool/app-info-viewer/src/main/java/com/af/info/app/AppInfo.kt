@@ -1,4 +1,4 @@
-package com.af.app_info_viewer
+package com.af.info.app
 
 import android.graphics.drawable.Drawable
 
@@ -12,11 +12,9 @@ import android.graphics.drawable.Drawable
  * @param appName 应用名称
  * @param signature 应用签名
  */
-class AppInfo(
+data class AppInfo(
      var image: Drawable,
      var packageName: String,
      var appName: String,
      var signature: String
-) {
-
-}
+)

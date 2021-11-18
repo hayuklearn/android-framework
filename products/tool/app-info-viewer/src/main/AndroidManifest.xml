@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.af.app_info_viewer">
+    package="com.af.info">
+
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <queries>
+        <!-- <package android:name="*" /> -->
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -11,13 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android新框架">
 
-        <activity android:name=".ListActivity"
+        <activity android:name=".entry.EntryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".app.InstalledAppListActivity"
+            android:exported="true">
+
+        </activity>
+    </application>
 </manifest>
