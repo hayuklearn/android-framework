@@ -14,7 +14,7 @@ import com.af.info.service.RunningServiceListActivity
  * @author liangxiaxu@leyaoyao.com
  * @date 2021-11-18
  */
-class EntryActivity:AppCompatActivity() {
+class EntryActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityEntryBinding.inflate(layoutInflater) }
 
@@ -23,13 +23,13 @@ class EntryActivity:AppCompatActivity() {
         setContentView(binding.root)
         binding.entryAppList.setOnClickListener {
 
-            val intent  = Intent(this@EntryActivity, InstalledAppListActivity::class.java)
+            val intent = Intent(this@EntryActivity, InstalledAppListActivity::class.java)
             startActivity(intent)
         }
         binding.entryServiceList.setOnClickListener {
 
             // ApkTool.exec("dumpsys activity services | grep ServiceRecord | awk '{print \$4}' | sed 's/}//1g'")
-            val intent  = Intent(this@EntryActivity, RunningServiceListActivity::class.java)
+            val intent = Intent(this@EntryActivity, RunningServiceListActivity::class.java)
             startActivity(intent)
         }
     }
