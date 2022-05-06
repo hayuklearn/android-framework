@@ -3,7 +3,6 @@ package com.af.info.entry
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.af.info.ApkTool
 import com.af.info.app.InstalledAppListActivity
 import com.af.info.databinding.ActivityEntryBinding
 import com.af.info.service.RunningServiceListActivity
