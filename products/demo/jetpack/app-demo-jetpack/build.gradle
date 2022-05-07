@@ -57,12 +57,11 @@ dependencies {
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation project(':libraries:lib-utils')
+    implementation project(':modules:mod-lifecycle')
 
     implementation libs.appcompat
 
-    implementation libs.bundles.lifecycle
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    annotationProcessor libs.lifecycleCompiler
 
     implementation libs.bundles.nav
     androidTestImplementation libs.navigationTesting

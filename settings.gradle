@@ -13,6 +13,7 @@ rootProject.name = "Android-新框架"
 
 // modules ------------------------------------------------------------
 include ':modules:mod-compose'
+include ':modules:mod-lifecycle'
 include ':modules:mod-test'
 
 // libraries ----------------------------------------------------------

@@ -22,12 +22,10 @@ class BottomNavigationViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
         TranslucentStatusCompat.requestTranslucentStatus(this, true)
-        // StatusBar.requestStatusBarLightOnMarshmallow(window, true)
-
         setContentView(binding.root)
 
+        // TODO
         // step 1
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_navigation_host) as NavHostFragment
         val navController = host.navController

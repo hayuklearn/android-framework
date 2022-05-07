@@ -5,19 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
-import androidx.fragment.app.Fragment
 import com.af.demo.jetpack.R
-import com.af.demo.jetpack.lifecycle.observer.FragmentObserver
+import com.mod.lifecycle.BaseLifecycleFragment
 
 /**
  * Created by hayukleung@gmail.com on 2021-09-09.
  */
-class LifecycleFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        lifecycle.addObserver(FragmentObserver())
-    }
+class TryLifecycleFragment : BaseLifecycleFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
