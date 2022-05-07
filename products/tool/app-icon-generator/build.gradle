@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 // import groovy.transform.Field
@@ -69,15 +70,10 @@ dependencies {
     androidTestImplementation libs.composeUiTestJunit4
     debugImplementation libs.composeUiTooling
     // kotlin
-    // implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation libs.coreKtx
     implementation libs.appcompat
     // lifecycle
     implementation libs.bundles.lifecycle
     // material
     implementation libs.material
-    // test
-    testImplementation libs.junit
-    androidTestImplementation libs.androidTestJunit
-    androidTestImplementation libs.espressoCore
 }

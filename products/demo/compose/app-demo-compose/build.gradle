@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 // import groovy.transform.Field
@@ -12,9 +13,6 @@ plugins {
 android {
 
     compileSdk libs.versions.compileSdk.get().toInteger()
-    // old
-    // compileSdkVersion rootProject.ext.compile_sdk_version
-    // buildToolsVersion rootProject.ext.build_tools_version
 
     defaultConfig {
         applicationId "com.af.demo.compose"
@@ -22,11 +20,6 @@ android {
         targetSdk libs.versions.targetSdk.get().toInteger()
         versionCode 1
         versionName '1.0'
-        // old
-        // minSdkVersion rootProject.ext.min_sdk_version
-        // targetSdkVersion rootProject.ext.target_sdk_version
-        // versionCode version_code
-        // versionName version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

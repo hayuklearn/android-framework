@@ -5,20 +5,19 @@ frameworkVersionName = "0.0.1"
 compileSdk = "32"
 minSdk = "21"
 targetSdk = "32"
-buildTools = "30.0.3"
 
-gradleTool = "4.2.1"
+gradleTool = "7.1.3"
 kotlin = "1.5.21"
 
-compose = "1.0.1"
+compose = "1.1.1"
 lifecycle = "2.3.1"
 work = "2.7.1"
 room = "2.3.0"
-nav = "2.3.5"
+nav = "2.4.2"
 
 [libraries]
 coreKtx = "androidx.core:core-ktx:1.6.0"
-kotlinCoroutinesAndroid = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+kotlinCoroutinesAndroid = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 
 appcompat = "androidx.appcompat:appcompat:1.3.1"
 
@@ -56,7 +55,7 @@ navigationFragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx"
 navigationUiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "nav" }
 navigationDynamicFeaturesFragment = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref = "nav" }
 navigationTesting = { module = "androidx.navigation:navigation-testing", version.ref = "nav" }
-navigationCompose = "androidx.navigation:navigation-compose:2.4.0-alpha06"
+navigationCompose = "androidx.navigation:navigation-compose:2.4.2"
 
 junit = "junit:junit:4.13.2"
 androidTestJunit = "androidx.test.ext:junit:1.1.3"

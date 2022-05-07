@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:ignore="HardcodedText">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/entry_app_list"
+        android:id="@+id/entryAppList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查看已安装的应用"
-        app:layout_constraintBottom_toTopOf="@+id/entry_service_list" />
+        android:text="应用列表" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/entry_service_list"
+        android:id="@+id/entryServiceList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查看运行中的服务"
-        app:layout_constraintBottom_toBottomOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="服务列表" />
+</androidx.appcompat.widget.LinearLayoutCompat>

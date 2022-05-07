@@ -10,6 +10,10 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "Android-新框架"
+
+// modules ------------------------------------------------------------
+include ':modules:mod-test'
+
 // libraries ----------------------------------------------------------
 include ':libraries:lib-deps'
 include ':libraries:lib-utils'

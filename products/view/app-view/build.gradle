@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -36,7 +37,6 @@ dependencies {
     implementation project(':libraries:lib-utils')
 
     // kotlin
-    // implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation libs.coreKtx
     implementation libs.kotlinCoroutinesAndroid
 
@@ -48,9 +48,4 @@ dependencies {
 
     // material
     implementation libs.material
-
-    // test
-    testImplementation libs.junit
-    androidTestImplementation libs.androidTestJunit
-    androidTestImplementation libs.espressoCore
 }
