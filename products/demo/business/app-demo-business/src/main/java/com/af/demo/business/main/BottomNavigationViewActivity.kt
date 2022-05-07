@@ -1,16 +1,14 @@
 package com.af.demo.business.main
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.af.demo.business.R
 import com.af.demo.business.databinding.ActivityBottomNavigationViewBinding
 import com.af.lib.utils.Android
+import com.af.lib.utils.TranslucentStatusCompat
 
 /**
  * Activity Using BottomNavigationView & NavigationUI
@@ -25,22 +23,10 @@ class BottomNavigationViewActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+        TranslucentStatusCompat.requestTranslucentStatus(this, true)
+        // StatusBar.requestStatusBarLightOnMarshmallow(window, true)
+
         setContentView(binding.root)
-
-        val controller = ViewCompat.getWindowInsetsController(binding.root)
-        // 显示状态栏
-        controller?.show(WindowInsetsCompat.Type.statusBars())
-        // 隐藏状态栏
-        // controller?.hide(WindowInsetsCompat.Type.statusBars())
-
-        // 状态栏文字颜色改为黑色
-        controller?.isAppearanceLightStatusBars = true
-
-        // 状态栏文字颜色改为白色
-        // controller?.isAppearanceLightStatusBars = false
-
-        binding.toolbar.layoutParams.height = Android.getToolbarHeight(this) + Android.getStatusBarHeight(this)
-        binding.toolbar.requestLayout()
 
         // step 1
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_navigation_host) as NavHostFragment
@@ -53,6 +39,6 @@ class BottomNavigationViewActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
 
-        return findNavController(this, R.id.bottom_navigation_view).navigateUp()
+        return findNavController(this, R.id.bottomNavigationView).navigateUp()
     }
 }
