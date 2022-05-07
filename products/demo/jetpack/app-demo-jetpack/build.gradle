@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+
     id 'androidx.navigation.safeargs'
 }
 
@@ -38,11 +38,12 @@ android {
         useIR = true
     }
     buildFeatures {
+        viewBinding true
         compose false
     }
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.get()
-        kotlinCompilerVersion libs.versions.kotlin.get()
+        // deprecated kotlinCompilerVersion libs.versions.kotlin.get()
     }
     packagingOptions {
         resources {

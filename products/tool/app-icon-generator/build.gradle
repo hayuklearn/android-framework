@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
 }
 
 // import groovy.transform.Field
@@ -55,7 +54,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.get()
-        kotlinCompilerVersion libs.versions.kotlin.get()
+        // deprecated kotlinCompilerVersion libs.versions.kotlin.get()
     }
     packagingOptions {
         resources {
@@ -65,10 +64,6 @@ android {
 }
 
 dependencies {
-    // compose
-    implementation libs.bundles.compose
-    androidTestImplementation libs.composeUiTestJunit4
-    debugImplementation libs.composeUiTooling
     // kotlin
     implementation libs.coreKtx
     implementation libs.appcompat

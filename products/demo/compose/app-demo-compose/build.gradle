@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
 }
 
 // import groovy.transform.Field
@@ -47,26 +46,28 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.get()
-        kotlinCompilerVersion libs.versions.kotlin.get()
+        // deprecated kotlinCompilerVersion libs.versions.kotlin.get()
     }
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
+    // packagingOptions {
+    //     resources {
+    //         excludes += '/META-INF/{AL2.0,LGPL2.1}'
+    //     }
+    // }
 }
 
 dependencies {
 
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation project(':libraries:lib-deps')
+    // kotlin --------------------------------------------------------------------------------------
+    implementation libs.coreKtx
+
+    // app compat ----------------------------------------------------------------------------------
+    implementation libs.appcompat
 
     // material ------------------------------------------------------------------------------------
     implementation libs.material
 
     // compose -------------------------------------------------------------------------------------
-    implementation libs.bundles.compose
-    androidTestImplementation libs.composeUiTestJunit4
-    debugImplementation libs.composeUiTooling
+    implementation project(':modules:mod-compose')
 }
