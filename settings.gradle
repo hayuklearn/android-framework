@@ -20,6 +20,7 @@ include ':libraries:lib-utils'
 
 // products -----------------------------------------------------------
 // demo
+include ':products:demo:business:app-demo-business'
 include ':products:demo:compose:app-demo-compose'
 include ':products:demo:jetpack:app-demo-jetpack'
 // tool

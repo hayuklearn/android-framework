@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_deeplink"
+    app:startDestination="@id/deeplinkFragment">
+
+    <fragment
+        android:id="@+id/deeplinkFragment"
+        android:name="com.af.demo.jetpack.navigation.deeplink.DeeplinkFragment"
+        android:label="fragment_deeplink"
+        tools:layout="@layout/fragment_deeplink">
+        <deepLink app:uri="http://192.168.101.4/{params}" />
+    </fragment>
+</navigation>
