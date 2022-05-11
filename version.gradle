@@ -1,0 +1,13 @@
+ext {
+    // framework version
+    frameworkVersionCode = 1
+    frameworkVersionName = '0.0.1'
+
+    // sdk version
+    compileSdkVersion = 32
+    minSdkVersion = 21
+    targetSdkVersion = 32
+
+    // dependencies
+    androidxNavigation = '2.4.2'
+}

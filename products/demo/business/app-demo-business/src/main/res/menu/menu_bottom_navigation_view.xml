@@ -7,11 +7,11 @@
         android:enabled="true"
         android:icon="@drawable/image_tab_home"
         android:title="HOME"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/mineFragment"
         android:enabled="true"
         android:icon="@drawable/image_tab_order"
         android:title="MINE"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

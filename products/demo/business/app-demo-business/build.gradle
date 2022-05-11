@@ -55,13 +55,11 @@ dependencies {
 
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation project(':libraries:lib-utils')
-    implementation project(':modules:mod-lifecycle')
-
     implementation libs.appcompat
-
-    implementation libs.bundles.nav
-    androidTestImplementation libs.navigationTesting
-
     implementation libs.material
+
+    implementation project(':modules:mod-lifecycle')
+    implementation project(':modules:mod-navigation')
+
+    implementation project(':libraries:lib-utils')
 }

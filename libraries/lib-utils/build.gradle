@@ -50,10 +50,6 @@ dependencies {
     annotationProcessor libs.roomCompiler
     testImplementation libs.roomTesting
 
-    // navigation ----------------------------------------------------------------------------------
-    implementation libs.bundles.nav
-    androidTestImplementation libs.navigationTesting
-
     // test ----------------------------------------------------------------------------------------
     testImplementation libs.junit
     androidTestImplementation libs.androidTestJunit

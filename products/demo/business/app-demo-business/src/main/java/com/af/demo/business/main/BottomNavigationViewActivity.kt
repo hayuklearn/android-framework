@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.NavigatorProvider
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.af.demo.business.R
@@ -22,48 +20,50 @@ class BottomNavigationViewActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityBottomNavigationViewBinding.inflate(layoutInflater) }
 
-    private lateinit var mainFragmentNavigator: MainFragmentNavigator
+    private lateinit var navigator: BusinessFragmentNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
         TranslucentStatusCompat.requestTranslucentStatus(this, true)
+
         setContentView(binding.root)
 
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         val provider: NavigatorProvider = host.navController.navigatorProvider
-        mainFragmentNavigator = MainFragmentNavigator(this, host.childFragmentManager, host.id)
-        provider.addNavigator(mainFragmentNavigator)
+        this.navigator = BusinessFragmentNavigator(this, host.childFragmentManager, host.id)
+        provider.addNavigator(navigator)
 
-        val navDestinations: NavGraph = initNavGraph(provider, mainFragmentNavigator)
+        val navDestinations: NavGraph = initNavGraph(provider, navigator)
         host.navController.graph = navDestinations
 
         NavigationUI.setupWithNavController(binding.bottomNavigationView, host.navController)
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            host.navController.navigate(menuItem.itemId)
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            host.navController.navigate(item.itemId)
             true
         }
     }
 
-    override fun onSupportNavigateUp() = findNavController(this, R.id.bottomNavigationView).navigateUp()
+    // override fun onSupportNavigateUp() = findNavController(this, R.id.bottomNavigationView).navigateUp()
 
     private fun initNavGraph(
         provider: NavigatorProvider,
-        fragmentNavigator: MainFragmentNavigator
+        fragmentNavigator: BusinessFragmentNavigator
     ): NavGraph {
         val navGraph = NavGraph(NavGraphNavigator(provider))
 
         // 用自定义的导航器来创建目的地
 
-        val destinationHome: FragmentNavigator.Destination = fragmentNavigator.createDestination()
+        val destinationHome: BusinessFragmentNavigator.Destination = fragmentNavigator.createDestination()
         destinationHome.id = R.id.homeFragment
-        destinationHome.setClassName(HomeFragment::class.java.canonicalName)
+        destinationHome.setClassName(HomeFragment::class.java.name)
         navGraph.addDestination(destinationHome)
 
-        val destinationMine: FragmentNavigator.Destination = fragmentNavigator.createDestination()
+        val destinationMine: BusinessFragmentNavigator.Destination = fragmentNavigator.createDestination()
         destinationMine.id = R.id.mineFragment
-        destinationMine.setClassName(MineFragment::class.java.canonicalName)
+        destinationMine.setClassName(MineFragment::class.java.name)
         navGraph.addDestination(destinationMine)
 
         navGraph.setStartDestination(destinationHome.id)
