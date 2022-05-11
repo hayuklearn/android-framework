@@ -10,6 +10,7 @@ import androidx.annotation.IdRes
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.*
 import androidx.navigation.fragment.FragmentNavigator
 
@@ -96,14 +97,12 @@ class BusinessFragmentNavigator(
      * @param context Context providing the correct [ClassLoader]
      * @param fragmentManager FragmentManager the Fragment will be added to
      * @param className The Fragment to instantiate
-     * @param args The Fragment's arguments, if any
      * @return A new fragment instance.
      */
-    fun instantiateFragment(
+    private fun instantiateFragment(
         context: Context,
         fragmentManager: FragmentManager,
-        className: String,
-        args: Bundle?
+        className: String
     ): Fragment {
         return fragmentManager.fragmentFactory.instantiate(context.classLoader, className)
     }
@@ -159,9 +158,19 @@ class BusinessFragmentNavigator(
         if (className[0] == '.') {
             className = context.packageName + className
         }
-        val frag = fragmentManager.fragmentFactory.instantiate(context.classLoader, className)
+
+        // val frag = fragmentManager.fragmentFactory.instantiate(context.classLoader, className)
+        // frag.arguments = args
+        // val ft = fragmentManager.beginTransaction()
+
+        var frag = fragmentManager.findFragmentByTag(className)
+        if (null == frag) {
+            // 不存在，则创建
+            frag = instantiateFragment(context, fragmentManager, className)
+        }
         frag.arguments = args
-        val ft = fragmentManager.beginTransaction()
+        val ft: FragmentTransaction = fragmentManager.beginTransaction()
+
         var enterAnim = navOptions?.enterAnim ?: -1
         var exitAnim = navOptions?.exitAnim ?: -1
         var popEnterAnim = navOptions?.popEnterAnim ?: -1

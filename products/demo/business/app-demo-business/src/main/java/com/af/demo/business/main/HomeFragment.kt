@@ -43,6 +43,11 @@ class HomeFragment : BaseLifecycleFragment() {
         Log.d(TAG, "onViewCreated")
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        Log.d(TAG, "onHiddenChanged, hidden = $hidden")
+    }
+
     companion object {
 
         private const val TAG = "home"
