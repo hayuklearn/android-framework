@@ -182,7 +182,9 @@ class BusinessFragmentNavigator(
             popExitAnim = if (popExitAnim != -1) popExitAnim else 0
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
         }
+
         // ft.replace(containerId, frag)
+
         fragmentManager.fragments.forEach { fragment ->
             ft.hide(fragment)
         }
@@ -190,6 +192,7 @@ class BusinessFragmentNavigator(
             ft.add(containerId, frag, className)
         }
         ft.show(frag)
+
         ft.setPrimaryNavigationFragment(frag)
         @IdRes val destId = destination.id
         // TODO Build first class singleTop behavior for fragments
@@ -235,14 +238,14 @@ class BusinessFragmentNavigator(
         }
     }
 
-    public override fun onSaveState(): Bundle? {
+    override fun onSaveState(): Bundle? {
         if (savedIds.isEmpty()) {
             return null
         }
         return bundleOf(KEY_SAVED_IDS to ArrayList(savedIds))
     }
 
-    public override fun onRestoreState(savedState: Bundle) {
+    override fun onRestoreState(savedState: Bundle) {
         val savedIds = savedState.getStringArrayList(KEY_SAVED_IDS)
         if (savedIds != null) {
             this.savedIds.clear()
@@ -271,7 +274,7 @@ class BusinessFragmentNavigator(
          * @param navigatorProvider The [NavController] which this destination
          * will be associated with.
          */
-        public constructor(navigatorProvider: NavigatorProvider) :
+        constructor(navigatorProvider: NavigatorProvider) :
                 this(navigatorProvider.getNavigator(BusinessFragmentNavigator::class.java))
 
         @CallSuper
@@ -297,13 +300,13 @@ class BusinessFragmentNavigator(
          *
          * @throws IllegalStateException when no Fragment class was set.
          */
-        public val className: String
+        val className: String
             get() {
                 checkNotNull(_className) { "Fragment class was not set" }
                 return _className as String
             }
 
-        public override fun toString(): String {
+        override fun toString(): String {
             val sb = StringBuilder()
             sb.append(super.toString())
             sb.append(" class=")
@@ -338,14 +341,14 @@ class BusinessFragmentNavigator(
          * The map of shared elements associated with these Extras. The returned map
          * is an [unmodifiable][Map] copy of the underlying map and should be treated as immutable.
          */
-        public val sharedElements: Map<View, String>
+        val sharedElements: Map<View, String>
             get() = _sharedElements.toMap()
 
         /**
          * Builder for constructing new [Extras] instances. The resulting instances are
          * immutable.
          */
-        public class Builder {
+        class Builder {
             private val _sharedElements = LinkedHashMap<View, String>()
 
             /**
@@ -355,7 +358,7 @@ class BusinessFragmentNavigator(
              * @param sharedElements Shared element pairs to add
              * @return this [Builder]
              */
-            public fun addSharedElements(sharedElements: Map<View, String>): Builder {
+            fun addSharedElements(sharedElements: Map<View, String>): Builder {
                 for ((view, name) in sharedElements) {
                     addSharedElement(view, name)
                 }
@@ -383,7 +386,7 @@ class BusinessFragmentNavigator(
              *
              * @return An immutable [Extras] instance.
              */
-            public fun build(): Extras {
+            fun build(): Extras {
                 return Extras(_sharedElements)
             }
         }

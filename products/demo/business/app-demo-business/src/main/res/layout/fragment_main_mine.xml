@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText,SpUsage">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我的" />
+        android:layout_height="wrap_content"
+        android:text="MINE"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="40dp" />
 </FrameLayout>

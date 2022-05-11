@@ -20,8 +20,6 @@ class BottomNavigationViewActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityBottomNavigationViewBinding.inflate(layoutInflater) }
 
-    private lateinit var navigator: BusinessFragmentNavigator
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -31,22 +29,16 @@ class BottomNavigationViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-
         val provider: NavigatorProvider = host.navController.navigatorProvider
-        this.navigator = BusinessFragmentNavigator(this, host.childFragmentManager, host.id)
+        val navigator = BusinessFragmentNavigator(this, host.childFragmentManager, host.id)
         provider.addNavigator(navigator)
-
-        val navDestinations: NavGraph = initNavGraph(provider, navigator)
-        host.navController.graph = navDestinations
-
+        host.navController.graph = initNavGraph(provider, navigator)
         NavigationUI.setupWithNavController(binding.bottomNavigationView, host.navController)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             host.navController.navigate(item.itemId)
             true
         }
     }
-
-    // override fun onSupportNavigateUp() = findNavController(this, R.id.bottomNavigationView).navigateUp()
 
     private fun initNavGraph(
         provider: NavigatorProvider,
