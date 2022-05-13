@@ -11,7 +11,7 @@
     <item
         android:id="@+id/mineFragment"
         android:enabled="true"
-        android:icon="@drawable/image_tab_order"
+        android:icon="@drawable/image_tab_mine"
         android:title="MINE"
         app:showAsAction="never" />
 </menu>
