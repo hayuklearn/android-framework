@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.af.info.ApkTool
 import com.af.info.R
-import com.af.lib.utils.Android
+import com.af.lib.ktext.dp2px
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -144,7 +144,7 @@ class ItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
         a.recycle()
         mPaint = Paint()
         // bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)
-        mPadding = Android.dp2px(context, 12F)
+        mPadding = context.dp2px(12F)
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {

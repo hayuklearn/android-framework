@@ -3,30 +3,19 @@ package com.af.info
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import com.af.info.app.AppInfo
-import com.af.info.service.ServiceInfo
-import com.af.lib.utils.Android
-import kotlin.collections.ArrayList
-import android.content.Context.ACTIVITY_SERVICE
-
-import androidx.core.content.ContextCompat.getSystemService
-
-import android.app.ActivityManager
 import android.util.Log
-import androidx.core.content.ContextCompat
+import com.af.info.app.AppInfo
+import com.af.lib.ktext.signature
 import java.io.BufferedReader
 import java.io.DataOutputStream
-import java.io.IOException
 import java.io.InputStreamReader
-import java.lang.Exception
-
 
 /**
  * APK Tool
  */
 object ApkTool {
 
-    fun listInstalledPackages(
+    suspend fun listInstalledPackages(
         context: Context,
         packageManager: PackageManager
     ): ArrayList<AppInfo> {
@@ -44,7 +33,7 @@ object ApkTool {
                 //
                 packageInfo.applicationInfo.loadLabel(packageManager).toString(),
                 //
-                Android.signature(context, packageInfo.packageName)
+                context.signature(packageInfo.packageName)
             )
             list.add(appInfo)
         }
