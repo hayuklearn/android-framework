@@ -63,8 +63,7 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation libs.bundles.nav
-    androidTestImplementation libs.navigationTesting
+    implementation project(':modules:mod-navigation')
 
     implementation libs.material
 }

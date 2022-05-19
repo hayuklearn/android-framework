@@ -39,7 +39,7 @@ dependencies {
     implementation libs.appcompat
 
     // lifecycle -----------------------------------------------------------------------------------
-    implementation libs.bundles.lifecycle
+    implementation project(':modules:mod-lifecycle')
 
     // work manager --------------------------------------------------------------------------------
     implementation libs.bundles.work
@@ -51,7 +51,5 @@ dependencies {
     testImplementation libs.roomTesting
 
     // test ----------------------------------------------------------------------------------------
-    testImplementation libs.junit
-    androidTestImplementation libs.androidTestJunit
-    androidTestImplementation libs.espressoCore
+    implementation project(':modules:mod-test')
 }

@@ -22,14 +22,13 @@ include ':libraries:lib-utils'
 // products -----------------------------------------------------------
 // demo
 include ':products:demo:business:app-demo-business'
-// include ':products:demo:compose:app-demo-compose'
-// include ':products:demo:jetpack:app-demo-jetpack'
+include ':products:demo:compose:app-demo-compose'
+include ':products:demo:jetpack:app-demo-jetpack'
 // tool
-// include ':products:tool:app-icon-generator'
+include ':products:tool:app-icon-generator'
 include ':products:tool:app-info-viewer'
 // view
-// include ':products:view:app-view'
-include ':app-template'
+include ':products:view:app-view'
 
 // templates ----------------------------------------------------------
 

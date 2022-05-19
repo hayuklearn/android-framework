@@ -44,7 +44,7 @@ dependencies {
 
     implementation libs.swipeRefreshLayout
 
-    implementation libs.bundles.lifecycle
+    implementation project(':modules:mod-lifecycle')
 
     // material
     implementation libs.material
