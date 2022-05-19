@@ -61,7 +61,7 @@ dependencies {
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // kotlin --------------------------------------------------------------------------------------
-    implementation libs.coreKtx
+    implementation "androidx.core:core-ktx:$androidxCoreKtx"
 
     // app compat ----------------------------------------------------------------------------------
     implementation "androidx.appcompat:appcompat:$androidxAppcompat"

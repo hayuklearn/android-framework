@@ -1,4 +1,4 @@
-enableFeaturePreview('VERSION_CATALOGS')
+// enableFeaturePreview('VERSION_CATALOGS')
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -14,12 +14,11 @@ rootProject.name = "Android-新框架"
 include ':modules:mod-compose'
 include ':modules:mod-lifecycle'
 include ':modules:mod-navigation'
+include ':modules:mod-room'
 include ':modules:mod-test'
 include ':modules:mod-work'
-
 // libraries ----------------------------------------------------------
 include ':libraries:lib-utils'
-
 // products -----------------------------------------------------------
 // demo
 include ':products:demo:business:app-demo-business'
@@ -30,7 +29,5 @@ include ':products:tool:app-icon-generator'
 include ':products:tool:app-info-viewer'
 // view
 include ':products:view:app-view'
-
 // templates ----------------------------------------------------------
-
 include ':templates:app-templates'

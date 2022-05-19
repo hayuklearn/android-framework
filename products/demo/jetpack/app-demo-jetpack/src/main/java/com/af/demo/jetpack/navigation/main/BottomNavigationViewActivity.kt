@@ -1,28 +1,21 @@
 package com.af.demo.jetpack.navigation.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
-import androidx.navigation.Navigation.findNavController
-import com.af.lib.utils.Android
-import com.af.lib.utils.TranslucentStatusCompat
-import android.annotation.SuppressLint
-import android.graphics.Color
-
-
-import android.view.WindowManager
-
-import android.os.Build
-import android.view.View
-import android.view.Window
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.af.demo.jetpack.R
 import com.af.demo.jetpack.databinding.ActivityBottomNavigationViewBinding
+import com.af.lib.ktext.getStatusBarHeight
+import com.af.lib.ktext.getToolbarHeight
+import com.af.lib.ktext.signature
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Activity Using BottomNavigationView & NavigationUI
@@ -75,7 +68,7 @@ class BottomNavigationViewActivity : AppCompatActivity() {
         // 状态栏文字颜色改为白色
         // controller?.isAppearanceLightStatusBars = false
 
-        binding.toolbar.layoutParams.height = Android.getToolbarHeight(this) + Android.getStatusBarHeight(this)
+        binding.toolbar.layoutParams.height = getToolbarHeight() + getStatusBarHeight()
         binding.toolbar.requestLayout()
 
         // step 1
@@ -84,7 +77,9 @@ class BottomNavigationViewActivity : AppCompatActivity() {
         // step 3
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
-        Android.signature(this, packageName)
+        CoroutineScope(Dispatchers.IO).launch {
+            signature(packageName)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

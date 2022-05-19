@@ -62,7 +62,7 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$androidxAppcompat"
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation project(':modules:mod-navigation')
 

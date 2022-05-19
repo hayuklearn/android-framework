@@ -33,7 +33,7 @@ android {
 dependencies {
 
     // kotlin --------------------------------------------------------------------------------------
-    implementation libs.coreKtx
+    implementation "androidx.core:core-ktx:$androidxCoreKtx"
 
     // app compat ----------------------------------------------------------------------------------
     implementation "androidx.appcompat:appcompat:$androidxAppcompat"
@@ -45,9 +45,7 @@ dependencies {
     implementation project(':modules:mod-work')
 
     // room ----------------------------------------------------------------------------------------
-    implementation libs.bundles.room
-    annotationProcessor libs.roomCompiler
-    testImplementation libs.roomTesting
+    implementation project(':modules:mod-room')
 
     // test ----------------------------------------------------------------------------------------
     implementation project(':modules:mod-test')

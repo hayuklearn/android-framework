@@ -58,7 +58,7 @@ android {
 
 dependencies {
     // kotlin
-    implementation libs.coreKtx
+    implementation "androidx.core:core-ktx:$androidxCoreKtx"
     implementation "androidx.appcompat:appcompat:$androidxAppcompat"
     // lifecycle
     implementation project(':modules:mod-lifecycle')
