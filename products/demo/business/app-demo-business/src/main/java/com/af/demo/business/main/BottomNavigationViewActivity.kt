@@ -10,13 +10,14 @@ import androidx.navigation.ui.NavigationUI
 import com.af.demo.business.R
 import com.af.demo.business.databinding.ActivityBottomNavigationViewBinding
 import com.af.lib.utils.TranslucentStatusCompat
+import com.mod.lifecycle.BaseLifecycleActivity
 
 /**
  * Activity Using BottomNavigationView & NavigationUI
  *
  * Created by hayukleung@gmail.com on 2021-09-10.
  */
-class BottomNavigationViewActivity : AppCompatActivity() {
+class BottomNavigationViewActivity : BaseLifecycleActivity() {
 
     private val binding by lazy { ActivityBottomNavigationViewBinding.inflate(layoutInflater) }
 

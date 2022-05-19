@@ -21,6 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.af.info.ApkTool
 import com.af.info.R
 import com.af.lib.ktext.dp2px
+import com.af.lib.utils.TranslucentStatusCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +38,8 @@ class InstalledAppListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        TranslucentStatusCompat.requestTranslucentStatus(this, false)
         setContentView(R.layout.activity_installed_app_list)
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout)
         mSwipeRefreshLayout.setOnRefreshListener {

@@ -29,3 +29,8 @@ include ':products:demo:business:app-demo-business'
 include ':products:tool:app-info-viewer'
 // view
 // include ':products:view:app-view'
+include ':app-template'
+
+// templates ----------------------------------------------------------
+
+include ':templates:app-templates'
