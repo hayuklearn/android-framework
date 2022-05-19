@@ -19,6 +19,7 @@ include ':modules:mod-test'
 include ':modules:mod-work'
 // libraries ----------------------------------------------------------
 include ':libraries:lib-utils'
+include ':libraries:widgets:lib-widget-loadingable'
 // products -----------------------------------------------------------
 // demo
 include ':products:demo:business:app-demo-business'
