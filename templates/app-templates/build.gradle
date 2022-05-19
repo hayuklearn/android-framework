@@ -40,8 +40,8 @@ android {
 
 dependencies {
 
-    implementation libs.appcompat
-    implementation libs.material
+    implementation "androidx.appcompat:appcompat:$androidxAppcompat"
+    implementation "com.google.android.material:material:$comGoogleAndroidMaterial"
 
     implementation project(':modules:mod-lifecycle')
     implementation project(':modules:mod-navigation')

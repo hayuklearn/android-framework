@@ -11,22 +11,15 @@ plugins {
 
 android {
 
-    compileSdk libs.versions.compileSdk.get().toInteger()
-    // old
-    // compileSdkVersion rootProject.ext.compile_sdk_version
-    // buildToolsVersion rootProject.ext.build_tools_version
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.af.icon_generator"
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
         versionCode 1
         versionName '1.0'
-        // old
-        // minSdkVersion rootProject.ext.min_sdk_version
-        // targetSdkVersion rootProject.ext.target_sdk_version
-        // versionCode version_code
-        // versionName version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -53,7 +46,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.get()
+        kotlinCompilerExtensionVersion rootProject.ext.androidxCompose
         // deprecated kotlinCompilerVersion libs.versions.kotlin.get()
     }
     packagingOptions {
@@ -66,9 +59,9 @@ android {
 dependencies {
     // kotlin
     implementation libs.coreKtx
-    implementation libs.appcompat
+    implementation "androidx.appcompat:appcompat:$androidxAppcompat"
     // lifecycle
     implementation project(':modules:mod-lifecycle')
     // material
-    implementation libs.material
+    implementation "com.google.android.material:material:$comGoogleAndroidMaterial"
 }

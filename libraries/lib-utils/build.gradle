@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk libs.versions.compileSdk.get().toInteger()
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -36,14 +36,13 @@ dependencies {
     implementation libs.coreKtx
 
     // app compat ----------------------------------------------------------------------------------
-    implementation libs.appcompat
+    implementation "androidx.appcompat:appcompat:$androidxAppcompat"
 
     // lifecycle -----------------------------------------------------------------------------------
     implementation project(':modules:mod-lifecycle')
 
     // work manager --------------------------------------------------------------------------------
-    implementation libs.bundles.work
-    androidTestImplementation libs.workTesting
+    implementation project(':modules:mod-work')
 
     // room ----------------------------------------------------------------------------------------
     implementation libs.bundles.room

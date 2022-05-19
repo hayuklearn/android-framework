@@ -2,39 +2,14 @@
 frameworkVersionCode = "1"
 frameworkVersionName = "0.0.1"
 
-compileSdk = "32"
-minSdk = "21"
-targetSdk = "32"
-
 gradleTool = "7.1.3"
 kotlin = "1.6.10"
 
-compose = "1.1.1"
-work = "2.7.1"
 room = "2.3.0"
 
 [libraries]
 coreKtx = "androidx.core:core-ktx:1.6.0"
 kotlinCoroutinesAndroid = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
-
-appcompat = "androidx.appcompat:appcompat:1.3.1"
-
-material = "com.google.android.material:material:1.4.0"
-
-swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
-composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }
-composeActivity = "androidx.activity:activity-compose:1.3.1"
-composeUiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
-composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-
-workRuntimeKtx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
-workRxjava2 = { module = "androidx.work:work-rxjava2", version.ref = "work" }
-workGcm = { module = "androidx.work:work-gcm", version.ref = "work" }
-workMultiprocess = { module = "androidx.work:work-multiprocess", version.ref = "work" }
-workTesting = { module = "androidx.work:work-testing", version.ref = "work" }
 
 roomRuntime = { module = "androidx.room:room-runtime", version.ref = "room" }
 roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -43,7 +18,5 @@ roomPaging = "androidx.room:room-paging:2.4.0-alpha04"
 roomTesting = { module = "androidx.room:room-testing", version.ref = "room" }
 
 [bundles]
-compose = ["composeUi", "composeUiToolingPreview", "composeMaterial", "composeActivity"]
-work = ["workRuntimeKtx", "workRxjava2", "workGcm", "workMultiprocess"]
 room = ["roomRuntime", "roomRxjava2", "roomPaging"]
 

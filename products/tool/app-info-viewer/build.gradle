@@ -5,12 +5,13 @@ plugins {
 }
 
 android {
-    compileSdk libs.versions.compileSdk.get().toInteger()
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.af.info"
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
         versionCode 1
         versionName "1.0"
 
@@ -42,12 +43,12 @@ dependencies {
     implementation libs.coreKtx
     implementation libs.kotlinCoroutinesAndroid
 
-    implementation libs.appcompat
+    implementation "androidx.appcompat:appcompat:$androidxAppcompat"
 
-    implementation libs.swipeRefreshLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwiperefreshlayout"
 
     implementation project(':modules:mod-lifecycle')
 
     // material
-    implementation libs.material
+    implementation "com.google.android.material:material:$comGoogleAndroidMaterial"
 }

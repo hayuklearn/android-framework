@@ -6,12 +6,13 @@ plugins {
 
 android {
 
-    compileSdk libs.versions.compileSdk.get().toInteger()
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.af.demo.business"
-        minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
         versionCode 1
         versionName '1.0'
 
@@ -41,7 +42,7 @@ android {
         compose false
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.get()
+        kotlinCompilerExtensionVersion rootProject.ext.androidxCompose
         // deprecated kotlinCompilerVersion libs.versions.kotlin.get()
     }
     // packagingOptions {
@@ -55,8 +56,8 @@ dependencies {
 
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation libs.appcompat
-    implementation libs.material
+    implementation "androidx.appcompat:appcompat:$androidxAppcompat"
+    implementation "com.google.android.material:material:$comGoogleAndroidMaterial"
 
     implementation project(':modules:mod-lifecycle')
     implementation project(':modules:mod-navigation')
