@@ -1,4 +1,4 @@
-package com.lyy.ev.operation.widget.loading
+package com.af.widget.loadingable
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -20,11 +20,11 @@ import androidx.core.view.ViewCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnChildScrollUpCallback
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
-import com.lyy.ev.operation.R
-import com.lyy.log.LogService
+import com.af.widget.loadingable.R
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.pow
+import android.util.Log
 
 /**
  * =================================================================================================
@@ -162,13 +162,13 @@ class LoadingDelegate(private val loadingable: Loadingable) {
     private val mRefreshListener: Animation.AnimationListener =
         object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                LogService.d(TAG, "动画开始")
+                Log.d(TAG, "动画开始")
             }
             override fun onAnimationRepeat(animation: Animation) {
-                LogService.d(TAG, "动画重复")
+                Log.d(TAG, "动画重复")
             }
             override fun onAnimationEnd(animation: Animation?) {
-                LogService.d(TAG, "动画结束")
+                Log.d(TAG, "动画结束")
                 if (mRefreshing) {
                     // Make sure the progress view is fully visible
                     mProgress?.alpha = MAX_ALPHA

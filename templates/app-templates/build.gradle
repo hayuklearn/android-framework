@@ -47,4 +47,5 @@ dependencies {
     implementation project(':modules:mod-navigation')
 
     implementation project(':libraries:lib-utils')
+    implementation project(':libraries:widgets:lib-widget-loadingable')
 }

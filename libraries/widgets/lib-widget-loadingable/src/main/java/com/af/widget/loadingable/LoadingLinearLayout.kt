@@ -1,4 +1,4 @@
-package com.lyy.ev.operation.widget.loading
+package com.af.widget.loadingable
 
 import android.content.Context
 import android.graphics.Canvas

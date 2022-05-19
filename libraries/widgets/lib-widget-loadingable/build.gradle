@@ -35,4 +35,6 @@ dependencies {
 
     // app compat ----------------------------------------------------------------------------------
     implementation "androidx.appcompat:appcompat:$androidxAppcompat"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwiperefreshlayout"
 }

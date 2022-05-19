@@ -16,7 +16,7 @@ import android.view.animation.Animation;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.ViewCompat;
 
-import com.lyy.ev.operation.R;
+import com.af.widget.loadingable.R;
 
 /*
  * Copyright 2018 The Android Open Source Project
