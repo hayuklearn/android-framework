@@ -18,17 +18,18 @@ include ':modules:mod-room'
 include ':modules:mod-test'
 include ':modules:mod-work'
 // libraries ----------------------------------------------------------
+include ':libraries:lib-pinyin'
 include ':libraries:lib-utils'
 include ':libraries:widgets:lib-widget-loadingable'
 // products -----------------------------------------------------------
 // demo
-include ':products:demo:business:app-demo-business'
-include ':products:demo:compose:app-demo-compose'
-include ':products:demo:jetpack:app-demo-jetpack'
+// include ':products:demo:business:app-demo-business'
+// include ':products:demo:compose:app-demo-compose'
+// include ':products:demo:jetpack:app-demo-jetpack'
 // tool
-include ':products:tool:app-icon-generator'
-include ':products:tool:app-info-viewer'
+// include ':products:tool:app-icon-generator'
+// include ':products:tool:app-info-viewer'
 // view
-include ':products:view:app-view'
+// include ':products:view:app-view'
 // templates ----------------------------------------------------------
 include ':templates:app-templates'

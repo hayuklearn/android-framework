@@ -46,6 +46,7 @@ dependencies {
     implementation project(':modules:mod-lifecycle')
     implementation project(':modules:mod-navigation')
 
+    implementation project(':libraries:lib-pinyin')
     implementation project(':libraries:lib-utils')
     implementation project(':libraries:widgets:lib-widget-loadingable')
 }

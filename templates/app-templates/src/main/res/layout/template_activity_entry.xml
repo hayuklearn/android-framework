@@ -17,4 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="hide loading" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pinyin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pinyin Test" />
 </androidx.appcompat.widget.LinearLayoutCompat>

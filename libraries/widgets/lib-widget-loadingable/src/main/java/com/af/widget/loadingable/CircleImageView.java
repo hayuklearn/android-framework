@@ -10,9 +10,11 @@ import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.view.View;
 import android.view.animation.Animation;
 
+import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.ViewCompat;
 
@@ -99,9 +101,10 @@ public class CircleImageView extends AppCompatImageView {
         ViewCompat.setBackground(this, circle);
     }
 
+    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ObsoleteSdkInt")
     private boolean elevationSupported() {
-        return android.os.Build.VERSION.SDK_INT >= 21;
+        return android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.af.template
 
 import android.os.Bundle
+import com.af.lib.ktext.toast
+import com.af.lib.pinyin.Pinyin
 import com.af.template.base.BaseActivity
 import com.af.template.databinding.TemplateActivityEntryBinding
 
@@ -29,6 +31,10 @@ class EntryActivity : BaseActivity() {
         }
         binding.hideLoading.setOnClickListener {
             hideLoading()
+        }
+        binding.pinyin.setOnClickListener {
+            val city = "广州"
+            toast(Pinyin.toPinyin(city, " "))
         }
     }
 }
