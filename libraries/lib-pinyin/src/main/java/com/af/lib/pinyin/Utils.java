@@ -1,6 +1,6 @@
 package com.af.lib.pinyin;
 
-import org.ahocorasick.trie.Trie;
+import com.af.lib.pinyin.trie.Trie;
 
 import java.util.List;
 import java.util.Set;

@@ -1,6 +1,6 @@
 package com.af.lib.pinyin;
 
-import org.ahocorasick.trie.Emit;
+import com.af.lib.pinyin.trie.Emit;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,8 +1,8 @@
 package com.af.lib.pinyin;
 
 
-import org.ahocorasick.trie.Emit;
-import org.ahocorasick.trie.Trie;
+import com.af.lib.pinyin.trie.Emit;
+import com.af.lib.pinyin.trie.Trie;
 
 import java.util.Collections;
 import java.util.Comparator;
