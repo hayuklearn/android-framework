@@ -6,7 +6,12 @@ import android.os.Build
 import android.util.Log
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.reflect.Method
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * =================================================================================================
@@ -31,28 +36,25 @@ object UUIDCompat {
 
     private const val TAG = "uuid"
 
-
-
     suspend fun getUUID(context: Context): String? {
 
-        AndroidVersionCompat.compat(object : AndroidVersionCompatible {
+        return suspendCoroutine { continuation ->
 
-            override fun compatWithQ(): Boolean {
-                TODO("")
-            }
+            AndroidVersionCompat.compat(object : AndroidVersionCompatible {
 
-            override fun compatWithLollipop(): Boolean {
-                TODO("")
-            }
+                override fun compatWithS(): Boolean {
 
-            override fun compatWithDefault() {
-                TODO("")
-            }
-        })
-        TODO("")
+                    continuation.resume(SystemProperties.getRoBuildFingerprint())
+                    return true
+                }
+
+                override fun compatWithDefault() {
+
+                    continuation.resume(SystemProperties.getRoBuildFingerprint())
+                }
+            })
+        }
     }
-
-
 }
 
 
