@@ -3,6 +3,8 @@ package com.af.template
 import android.os.Bundle
 import com.af.lib.ktext.toast
 import com.af.lib.pinyin.Pinyin
+import com.af.lib.utils.SystemProperties
+import com.af.lib.utils.UUIDCompat
 import com.af.template.base.BaseActivity
 import com.af.template.databinding.TemplateActivityEntryBinding
 
@@ -35,6 +37,7 @@ class EntryActivity : BaseActivity() {
         binding.pinyin.setOnClickListener {
             val city = "广州"
             toast(Pinyin.toPinyin(city, " "))
+            SystemProperties.test()
         }
     }
 }
