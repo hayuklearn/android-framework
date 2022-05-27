@@ -5,6 +5,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
     }
 }
 
@@ -18,6 +19,7 @@ include ':modules:mod-room'
 include ':modules:mod-test'
 include ':modules:mod-work'
 // libraries ----------------------------------------------------------
+include ':libraries:lib-database'
 include ':libraries:lib-pinyin'
 include ':libraries:lib-utils'
 include ':libraries:widgets:lib-widget-loadingable'

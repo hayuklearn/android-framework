@@ -9,3 +9,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+libraries/lib-database/src/main/cpp/key.h

@@ -34,4 +34,8 @@ ext {
     junit = '4.13.2'
     androidxTestExtJunit = '1.1.3'
     androidxTestEspressoCore = '3.4.0'
+
+    comGoogleCodeGson = '2.9.0'
+
+    orgLitepalAndroidKotlin = '3.0.0'
 }
