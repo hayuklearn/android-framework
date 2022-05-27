@@ -1,15 +1,8 @@
 package com.af.lib.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
-import android.util.Log
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.lang.reflect.Method
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

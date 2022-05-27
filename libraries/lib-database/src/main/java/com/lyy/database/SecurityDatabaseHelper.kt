@@ -1,5 +1,6 @@
 package com.lyy.database
 
+import android.content.Context
 import org.litepal.LitePal
 
 /**
@@ -24,6 +25,11 @@ import org.litepal.LitePal
  * @date 2022-03-02
  */
 object SecurityDatabaseHelper {
+
+    fun init(context: Context) {
+
+        LitePal.initialize(context)
+    }
 
     inline fun <reified T> saveOrUpdate(t: T, businessUniqueId: String): Boolean {
 

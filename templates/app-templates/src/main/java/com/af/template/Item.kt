@@ -1,10 +1,4 @@
-package com.af.template.base
-
-import com.af.lib.pinyin.Pinyin
-import com.af.lib.pinyin.dict.CnCityDict
-import com.lyy.database.SecurityDatabaseHelper
-import com.mod.lifecycle.BaseLifecycleApplication
-import java.security.Security
+package com.af.template
 
 /**
  * =================================================================================================
@@ -17,13 +11,6 @@ import java.security.Security
  * =================================================================================================
  *
  * @author liangxiaxu@leyaoyao.com
- * @date 2022-05-20
+ * @date 2022-05-27
  */
-class BaseApplication : BaseLifecycleApplication() {
-
-    override fun onCreate() {
-        super.onCreate()
-        Pinyin.init(Pinyin.newConfig().with(CnCityDict.getInstance(this)))
-        SecurityDatabaseHelper.init(this)
-    }
-}
+data class Item(val id: String, val name: String, val content: String)
