@@ -37,13 +37,17 @@ object UUIDCompat {
 
                 override fun compatWithS(): Boolean {
 
-                    continuation.resume(SystemProperties.getRoBuildFingerprint())
+                    val roBuildFingerprint = SystemProperties.getRoBuildFingerprint()
+                    val uuid = MD5.md5("S$roBuildFingerprint")
+                    continuation.resume(uuid)
                     return true
                 }
 
                 override fun compatWithDefault() {
 
-                    continuation.resume(SystemProperties.getRoBuildFingerprint())
+                    val roBuildFingerprint = SystemProperties.getRoBuildFingerprint()
+                    val uuid = MD5.md5("Default$roBuildFingerprint")
+                    continuation.resume(uuid)
                 }
             })
         }

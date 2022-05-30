@@ -1,6 +1,7 @@
 package com.af.template.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.af.lib.ktext.getScreenHeight
 import com.af.template.databinding.TemplateActivityBaseBinding
@@ -25,7 +26,11 @@ open class BaseActivity : BaseLifecycleActivity(), ILoading {
 
     private val loadingDelegate by lazy { LoadingDelegate(this.provideLoadingable()) }
 
-    private val blockClickListener by lazy { View.OnClickListener { } }
+    private val blockClickListener by lazy {
+        View.OnClickListener {
+            Log.d("block", "拦截业务界面的点击事件")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +45,8 @@ open class BaseActivity : BaseLifecycleActivity(), ILoading {
 
     override fun setContentView(view: View?) {
 
+        this.binding.container.removeAllViews()
         view?.let {
-            this.binding.container.removeAllViews()
             this.binding.container.addView(it)
         }
     }

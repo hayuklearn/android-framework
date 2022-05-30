@@ -38,4 +38,7 @@ ext {
     comGoogleCodeGson = '2.9.0'
 
     orgLitepalAndroidKotlin = '3.0.0'
+
+    comTencentBuglyCrashreport = '3.3.3'
+    comTencentBuglyNativecrashreport = '3.9.2'
 }
