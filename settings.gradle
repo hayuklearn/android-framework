@@ -12,6 +12,7 @@ dependencyResolutionManagement {
 rootProject.name = "Android-新框架"
 
 // modules ------------------------------------------------------------
+include ':modules:mod-camerax'
 include ':modules:mod-compose'
 include ':modules:mod-lifecycle'
 include ':modules:mod-navigation'
@@ -22,8 +23,11 @@ include ':modules:mod-work'
 include ':libraries:lib-database'
 include ':libraries:lib-log'
 include ':libraries:lib-pinyin'
+include ':libraries:lib-scanner'
 include ':libraries:lib-utils'
 include ':libraries:widgets:lib-widget-loadingable'
+include ':libraries:dependencies:lib-scanner-pda-chiteng-jar'
+include ':libraries:dependencies:lib-scanner-phone'
 include ':libraries:dependencies:lib-tencent-mars-xlog'
 // products -----------------------------------------------------------
 // demo

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="common_corner_item" type="dimen">8dp</item>
+    <item name="common_padding_x0" type="dimen">0dp</item>
+    <item name="common_padding_x0_125" type="dimen">2dp</item>
+    <item name="common_padding_x0_25" type="dimen">4dp</item>
+    <item name="common_padding_x0_5" type="dimen">8dp</item>
+    <item name="common_padding_x1" type="dimen">16dp</item>
+    <item name="common_padding_x2" type="dimen">32dp</item>
+    <item name="common_padding_x4" type="dimen">64dp</item>
+    <item name="common_padding_x8" type="dimen">128dp</item>
+
+    <!-- for list item -->
+    <dimen name="item_header_height">40dp</dimen>
+    <dimen name="item_height">44dp</dimen>
+    <dimen name="item_height_m">40dp</dimen>
+    <dimen name="item_height_s">36dp</dimen>
+    <dimen name="item_height_quarter">11dp</dimen>
+    <dimen name="bottom_bar_height">48dp</dimen>
+
+    <!-- for text title -->
+    <dimen name="font_title_toolbar">20dp</dimen>
+    <dimen name="font_title_xl">22dp</dimen>
+    <dimen name="font_title_l">18dp</dimen>
+    <dimen name="font_title_m">16dp</dimen>
+    <dimen name="font_title_s">14dp</dimen>
+
+    <!-- for text content -->
+    <dimen name="font_text_xxxl">22dp</dimen>
+    <dimen name="font_text_xxl">20dp</dimen>
+    <dimen name="font_text_xl">18dp</dimen>
+    <dimen name="font_text_l">16dp</dimen>
+    <dimen name="font_text_m">14dp</dimen>
+    <dimen name="font_text_s">12dp</dimen>
+</resources>

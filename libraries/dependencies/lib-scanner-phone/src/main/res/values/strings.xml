@@ -1,0 +1,4 @@
+<resources>
+    <!-- 二维码扫描 -->
+    <string name="activity_qrscan_title">二维码扫描</string>
+</resources>

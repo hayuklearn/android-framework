@@ -8,8 +8,8 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 32
 
-    gradleTool = "7.1.3"
-    kotlin = "1.6.10"
+    gradleTool = '7.1.3'
+    kotlin = '1.6.10'
 
     // dependencies
 
@@ -17,6 +17,8 @@ ext {
     orgJetbrainsKotlinxCoroutinesAndroid = '1.6.0'
 
     androidxAppcompat = '1.4.1'
+
+    androidxActivityKtx = '1.4.0'
 
     comGoogleAndroidMaterial = '1.6.0'
 
@@ -31,6 +33,16 @@ ext {
 
     androidxSwiperefreshlayout = '1.1.0'
 
+    androidxRecyclerview = '1.2.1'
+
+    androidxConstraintlayout = '2.1.4'
+
+    androidxCameraCore = '1.2.0-alpha01'
+    androidxCamera2 = '1.2.0-alpha01'
+    androidxCameraLifecycle = '1.2.0-alpha01'
+    androidxCameraView = '1.2.0-alpha01'
+    androidxCameraExtensions = '1.2.0-alpha01'
+
     junit = '4.13.2'
     androidxTestExtJunit = '1.1.3'
     androidxTestEspressoCore = '3.4.0'
@@ -39,6 +51,10 @@ ext {
 
     orgLitepalAndroidKotlin = '3.0.0'
 
+    comGoogleZxingCore = '3.3.3'
+
     comTencentBuglyCrashreport = '3.3.3'
     comTencentBuglyNativecrashreport = '3.9.2'
+
+    comPermissionxGuolindevPermissionx = '1.4.0'
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lyy.scanner">
+
+    <application>
+        <activity android:name=".ScannerActivity" />
+        <activity android:name=".pda.PDAScannerActivity" />
+        <activity android:name=".phone.PhoneScannerActivity" />
+    </application>
+</manifest>

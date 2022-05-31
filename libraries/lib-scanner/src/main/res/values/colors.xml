@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 乐摇摇主色 -->
+    <color name="colorPrimary">#3d92f9</color>
+    <color name="colorPrimaryDark">#2d82e9</color>
+    <color name="colorPrimaryLight">#4da2f9</color>
+    <color name="colorPrimaryTransparent">#224da2f9</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorOff">#AAAAAA</color>
+    <color name="colorBackground">#F4F4F4</color>
+    <color name="colorBackgroundTitle">#D2D2D2</color>
+    <color name="colorItem">#EAEAEA</color>
+    <color name="colorItemDark">#E2E2E2</color>
+    <color name="colorDelete">#F3657D</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorLightOn">#FED928</color>
+    <color name="colorLightOff">@color/colorOff</color>
+    <color name="colorScan">#EE5550</color>
+
+    <!-- 文本相关 -->
+    <color name="colorTextDark">#ff212121</color>
+    <color name="colorTextTitle">#ff353535</color>
+    <color name="colorTextContent">#ff9a9a9a</color>
+    <color name="colorTextAssist">#ffa6afc4</color>
+    <color name="colorTextHint">#ffa6afc4</color>
+    <color name="colorTextWarn">#fffe635e</color>
+    <color name="colorTextWarnDark">#ffee534e</color>
+    <color name="colorTextWarnTransparent">#44ee534e</color>
+</resources>

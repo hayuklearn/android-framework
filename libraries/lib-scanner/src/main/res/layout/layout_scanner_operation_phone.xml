@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="SpUsage,HardcodedText">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/clear"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/ic_recycle"
+        android:foreground="?attr/actionBarItemBackground"
+        android:gravity="center_horizontal|bottom"
+        android:text="CLEAR"
+        android:textColor="@color/colorDelete"
+        android:textSize="@dimen/font_text_l"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scan"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_margin="@dimen/common_padding_x2"
+        android:background="@drawable/bg_button"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="SCAN"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/light"
+        app:layout_constraintStart_toEndOf="@+id/clear"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/light"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/ic_light_off"
+        android:foreground="?attr/actionBarItemBackground"
+        android:gravity="center_horizontal|bottom"
+        android:textColor="@color/colorLightOff"
+        android:textSize="@dimen/font_text_l"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scan"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:drawableTop="@drawable/ic_light_on"
+        tools:text="LIGHT ON"
+        tools:textColor="@color/colorLightOn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
