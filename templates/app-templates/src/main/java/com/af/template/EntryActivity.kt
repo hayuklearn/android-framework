@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import com.af.lib.ktext.toast
 import com.af.lib.pinyin.Pinyin
-import com.af.lib.utils.Task
 import com.af.lib.utils.UUIDCompat
 import com.af.template.base.BaseActivity
-import com.af.template.base.BaseService
 import com.af.template.databinding.TemplateActivityEntryBinding
 import com.lyy.database.SecurityDatabaseHelper
-import com.lyy.log.LogService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 /**
  * =================================================================================================
@@ -60,7 +56,6 @@ class EntryActivity : BaseActivity() {
             }
         }
         binding.log.setOnClickListener {
-            LogService.logGeneral("entry", "log general")
         }
     }
 

@@ -2,9 +2,7 @@ package com.af.template.base
 
 import com.af.lib.pinyin.Pinyin
 import com.af.lib.pinyin.dict.CnCityDict
-import com.af.lib.utils.Path
 import com.lyy.database.SecurityDatabaseHelper
-import com.lyy.log.LogService
 import com.mod.lifecycle.BaseLifecycleApplication
 
 /**
@@ -24,7 +22,6 @@ class BaseApplication : BaseLifecycleApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        LogService.init(logRootPath = Path.logPath(this))
         Pinyin.init(Pinyin.newConfig().with(CnCityDict.getInstance(this)))
         SecurityDatabaseHelper.init(this)
         BaseService.tryStartMainService(this)

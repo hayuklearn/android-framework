@@ -42,7 +42,7 @@ dependencies {
     implementation project(':modules:mod-lifecycle')
 
     // work manager --------------------------------------------------------------------------------
-    implementation project(':modules:mod-work')
+    // implementation project(':modules:mod-work')
 
     // room ----------------------------------------------------------------------------------------
     implementation project(':modules:mod-room')

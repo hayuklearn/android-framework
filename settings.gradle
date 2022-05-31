@@ -18,17 +18,15 @@ include ':modules:mod-lifecycle'
 include ':modules:mod-navigation'
 include ':modules:mod-room'
 include ':modules:mod-test'
-include ':modules:mod-work'
+// include ':modules:mod-work'
 // libraries ----------------------------------------------------------
 include ':libraries:lib-database'
-include ':libraries:lib-log'
 include ':libraries:lib-pinyin'
 include ':libraries:lib-scanner'
 include ':libraries:lib-utils'
 include ':libraries:widgets:lib-widget-loadingable'
 include ':libraries:dependencies:lib-scanner-pda-chiteng-jar'
 include ':libraries:dependencies:lib-scanner-phone'
-include ':libraries:dependencies:lib-tencent-mars-xlog'
 // products -----------------------------------------------------------
 // demo
 // include ':products:demo:business:app-demo-business'
