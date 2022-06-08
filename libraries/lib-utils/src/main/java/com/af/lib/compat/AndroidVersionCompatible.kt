@@ -1,7 +1,6 @@
 package com.af.lib.compat
 
-import android.annotation.TargetApi
-import android.os.Build
+import androidx.annotation.RequiresApi
 
 /**
  * =================================================================================================

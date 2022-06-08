@@ -1,8 +1,10 @@
 package com.af.lib.utils
 
 import android.content.Context
+import android.os.Build
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
+import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -31,26 +33,43 @@ object UUIDCompat {
 
     suspend fun getUUID(context: Context): String? {
 
+        val sn = SNCompat.getSN()
+
+        val imei = IMEICompat.getIMEI(context)
+
         return suspendCoroutine { continuation ->
 
             AndroidVersionCompat.compat(object : AndroidVersionCompatible {
 
-                override fun compatWithS(): Boolean {
-
-                    val roBuildFingerprint = SystemProperties.getRoBuildFingerprint()
-                    val uuid = MD5.md5("S$roBuildFingerprint")
-                    continuation.resume(uuid)
-                    return true
-                }
-
                 override fun compatWithDefault() {
 
-                    val roBuildFingerprint = SystemProperties.getRoBuildFingerprint()
-                    val uuid = MD5.md5("Default$roBuildFingerprint")
+                    val deviceId = SystemProperties.getRoBuildFingerprint()
+                    val uuid = UUIDBean(sn, imei, deviceId).toUUID()
                     continuation.resume(uuid)
+
+                    // 根据设备信息生成的 UUID
+                    // val t = ("35" + Build.BOARD.length % 10 + Build.BRAND.length % 10 + Build.CPU_ABI.length % 10 + Build.DEVICE.length % 10 + Build.MANUFACTURER.length % 10 + Build.MODEL.length % 10 + Build.PRODUCT.length % 10)
+                    // val deviceId: String = UUID(t.hashCode().toLong(), sn.hashCode().toLong()).toString()
+                    // val uuid = UUIDBean(sn, imei, deviceId).toUUID()
+                    // continuation.resume(uuid)
                 }
             })
         }
+    }
+}
+
+data class UUIDBean(val sn: String, val imei: String, val deviceId: String) {
+
+    fun toUUID() = MD5.md5(toString())
+
+    override fun toString(): String {
+
+        val jo = JSONObject()
+        jo.put("os", Build.VERSION.SDK_INT)
+        jo.put("sn", sn)
+        jo.put("imei", imei)
+        jo.put("deviceId", deviceId)
+        return jo.toString()
     }
 }
 

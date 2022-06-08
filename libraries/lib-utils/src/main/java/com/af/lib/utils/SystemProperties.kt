@@ -48,7 +48,10 @@ object SystemProperties {
     private const val roHardware = "ro.hardware"
     
     private const val roHwTimeoutMultiplier = "ro.hw_timeout_multiplier"
-    
+
+    private const val roSerialno = "ro.serialno"
+    private const val roBootSerialno = "ro.boot.serialno"
+
     private const val roSystemBuildFingerprint = "ro.system.build.fingerprint"
     
     private const val roVendorBuildFingerprint = "ro.vendor.build.fingerprint"
@@ -90,6 +93,9 @@ object SystemProperties {
     fun getRoHardware() = get(roHardware)
 
     fun getRoHwTimeoutMultiplier() = get(roHwTimeoutMultiplier)
+
+    fun getRoSerialno() = get(roSerialno)
+    fun getRoBootSerialno() = get(roBootSerialno)
 
     fun getRoSystemBuildFingerprint() = get(roSystemBuildFingerprint)
 
