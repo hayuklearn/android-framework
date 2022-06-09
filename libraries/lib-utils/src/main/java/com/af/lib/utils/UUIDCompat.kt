@@ -1,19 +1,16 @@
 package com.af.lib.utils
 
 import android.Manifest
-import android.content.pm.PackageManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
-import com.af.lib.ktext.toast
 import com.permissionx.guolindev.PermissionX
-import com.permissionx.guolindev.callback.ExplainReasonCallback
-import com.permissionx.guolindev.callback.ForwardToSettingsCallback
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -86,10 +83,23 @@ object UUIDCompat {
                                     )
                                 }
                             }
-                            .request { allGranted, grantedList, deniedList ->
+                            .request { allGranted, _, _ ->
 
                                 if (allGranted) {
-                                    file.createNewFile()
+                                    // 适配 Android 11/R
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                        if (Environment.isExternalStorageManager()) {
+                                            file.createNewFile()
+                                        } else {
+                                            // 请求用户授权
+                                            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                                            intent.data = Uri.parse("package:${activity.packageName}")
+                                            activity.startActivityForResult(intent, 0x0001)
+                                            return@request
+                                        }
+                                    } else {
+                                        file.createNewFile()
+                                    }
                                     Log.d(TAG, "uuid save in: $path")
                                     var uuid = file.readText()
                                     if (uuid.isNotEmpty()) {
