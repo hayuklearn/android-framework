@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.af.lib.utils">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 以 Android 11 及以上系统版本为 target 的应用，申请全局外部存储访问权限，Google Play 会严格审查申请该权限的应用上架资质，这点我们暂时不管 -->
-    <uses-permission
-        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 </manifest>

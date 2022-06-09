@@ -1,12 +1,14 @@
 package com.af.lib.utils
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
@@ -43,104 +45,110 @@ object UUIDCompat {
 
     suspend fun getUUID(activity: AppCompatActivity): String? = withContext(Dispatchers.Main) {
 
-        val sn = SNCompat.getSN()
-
-        val imei = IMEICompat.getIMEI(activity)
+        val newUUID = newUUID(activity)
 
         return@withContext suspendCoroutine { continuation ->
 
             AndroidVersionCompat.compat(object : AndroidVersionCompatible {
 
-                override fun compatWithQ(): Boolean {
-
-                    val directory = "${Environment.getExternalStorageDirectory()}/lyy/${activity.packageName}"
-                    val directoryFile = File(directory)
-                    if (!directoryFile.exists()) {
-                        directoryFile.mkdirs()
-                    }
-                    val path = "$directory/uuid"
-                    val file = File(path)
-                    if (!file.isFile) {
-                        // 需要获取权限
-                        PermissionX.init(activity)
-                            .permissions(arrayListOf(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-                            .explainReasonBeforeRequest()
-                            .onExplainRequestReason { scope, deniedList ->
-                                scope.showRequestReasonDialog(
-                                    deniedList,
-                                    "应用需要获得设备外部存储空间读写权限，用于获取设备 UUID",
-                                    "同意",
-                                    "拒绝"
-                                )
-                            }
-                            .onForwardToSettings { scope, deniedList ->
-                                if (deniedList.isNotEmpty()) {
-                                    scope.showForwardToSettingsDialog(
-                                        deniedList,
-                                        "应用需要获得设备外部存储空间读写权限，用于获取设备 UUID",
-                                        "去设置",
-                                        "再想想"
-                                    )
-                                }
-                            }
-                            .request { allGranted, _, _ ->
-
-                                if (allGranted) {
-                                    // 适配 Android 11/R
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                        if (Environment.isExternalStorageManager()) {
-                                            file.createNewFile()
-                                        } else {
-                                            // 请求用户授权
-                                            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                                            intent.data = Uri.parse("package:${activity.packageName}")
-                                            activity.startActivityForResult(intent, 0x0001)
-                                            return@request
-                                        }
-                                    } else {
-                                        file.createNewFile()
-                                    }
-                                    Log.d(TAG, "uuid save in: $path")
-                                    var uuid = file.readText()
-                                    if (uuid.isNotEmpty()) {
-                                        continuation.resume(uuid)
-                                    } else {
-                                        val deviceId = SystemProperties.getRoBuildFingerprint()
-                                        uuid = UUIDBean(sn, imei, deviceId).toUUID()
-                                        file.writeText(uuid)
-                                        continuation.resume(uuid)
-                                    }
-                                }
-                            }
-                    } else {
-                        Log.d(TAG, "uuid save in: $path")
-                        var uuid = file.readText()
+                @RequiresApi(Build.VERSION_CODES.R)
+                override fun compatWithR(): Boolean {
+                    // 需要获取权限
+                    if (Environment.isExternalStorageManager()) {
+                        val uuidFile = getUUIDFile(activity.packageName)
+                        if (!uuidFile.isFile) {
+                            uuidFile.deleteRecursively()
+                            uuidFile.createNewFile()
+                        }
+                        val uuid = uuidFile.readText()
                         if (uuid.isNotEmpty()) {
                             continuation.resume(uuid)
                         } else {
-                            val deviceId = SystemProperties.getRoBuildFingerprint()
-                            uuid = UUIDBean(sn, imei, deviceId).toUUID()
-                            file.writeText(uuid)
-                            continuation.resume(uuid)
+                            uuidFile.writeText(newUUID)
+                            continuation.resume(newUUID)
                         }
+                    } else {
+                        // 请求用户授权
+                        val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                        intent.data = Uri.parse("package:${activity.packageName}")
+                        activity.startActivityForResult(intent, 0x0001)
                     }
                     return true
                 }
 
+                override fun compatWithO(): Boolean {
+                    // Android 8.0 及以上系统采用新版获取 UUID 方式
+                    // 需要获取权限
+                    val reason = "应用需要获得设备外部存储空间读写权限，用于获取设备 UUID"
+                    PermissionX.init(activity)
+                        .permissions(arrayListOf(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                        .explainReasonBeforeRequest()
+                        .onExplainRequestReason { scope, deniedList ->
+                            scope.showRequestReasonDialog(
+                                deniedList,
+                                reason,
+                                "同意",
+                                "拒绝"
+                            )
+                        }
+                        .onForwardToSettings { scope, deniedList ->
+                            if (deniedList.isNotEmpty()) {
+                                scope.showForwardToSettingsDialog(
+                                    deniedList,
+                                    reason,
+                                    "去设置",
+                                    "再想想"
+                                )
+                            }
+                        }
+                        .request { allGranted, _, _ ->
+                            if (allGranted) {
+                                val uuidFile = getUUIDFile(activity.packageName)
+                                if (!uuidFile.isFile) {
+                                    uuidFile.deleteRecursively()
+                                    uuidFile.createNewFile()
+                                }
+                                val uuid = uuidFile.readText()
+                                if (uuid.isNotEmpty()) {
+                                    continuation.resume(uuid)
+                                } else {
+                                    uuidFile.writeText(newUUID)
+                                    continuation.resume(newUUID)
+                                }
+                            }
+                        }
+                    return true
+                }
+
                 override fun compatWithDefault() {
-
-                    val deviceId = SystemProperties.getRoBuildFingerprint()
-                    val uuid = UUIDBean(sn, imei, deviceId).toUUID()
+                    // 兼容传统售货机、兑币机设备
+                    // Android 7.1 及以下系统
+                    val uuid = UUIDLegacy.getDeviceUniqueId(activity, UUIDLegacy.getSerial())
                     continuation.resume(uuid)
-
-                    // 根据设备信息生成的 UUID
-                    // val t = ("35" + Build.BOARD.length % 10 + Build.BRAND.length % 10 + Build.CPU_ABI.length % 10 + Build.DEVICE.length % 10 + Build.MANUFACTURER.length % 10 + Build.MODEL.length % 10 + Build.PRODUCT.length % 10)
-                    // val deviceId: String = UUID(t.hashCode().toLong(), sn.hashCode().toLong()).toString()
-                    // val uuid = UUIDBean(sn, imei, deviceId).toUUID()
-                    // continuation.resume(uuid)
                 }
             })
         }
+    }
+
+    private fun getUUIDFile(packageName: String): File {
+
+        val directory = "${Environment.getExternalStorageDirectory()}/lyy/${packageName}"
+        val directoryFile = File(directory)
+        if (!directoryFile.exists()) {
+            directoryFile.mkdirs()
+        }
+        val uuidPath = "$directory/uuid"
+        val uuidFile = File(uuidPath)
+        Log.d(TAG, "uuid file: ${uuidFile.absolutePath}")
+        return uuidFile
+    }
+
+    private suspend fun newUUID(context: Context): String {
+
+        val sn = SNCompat.getSN()
+        val imei = IMEICompat.getIMEI(context)
+        val deviceId = SystemProperties.getRoBuildFingerprint()
+        return UUIDBean(sn, imei, deviceId).toUUID()
     }
 }
 

@@ -56,5 +56,5 @@ ext {
     comTencentBuglyCrashreport = '3.3.3'
     comTencentBuglyNativecrashreport = '3.9.2'
 
-    comGuolindevPermissionx = '1.6.3'
+    comGuolindevPermissionx = '1.6.4'
 }
