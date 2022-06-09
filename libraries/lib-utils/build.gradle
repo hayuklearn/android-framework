@@ -49,4 +49,7 @@ dependencies {
 
     // test ----------------------------------------------------------------------------------------
     implementation project(':modules:mod-test')
+
+    // permission ----------------------------------------------------------------------------------
+    implementation "com.guolindev.permissionx:permissionx:$comGuolindevPermissionx"
 }

@@ -4,6 +4,7 @@ import com.af.lib.pinyin.Pinyin
 import com.af.lib.pinyin.dict.CnCityDict
 import com.lyy.database.SecurityDatabaseHelper
 import com.mod.lifecycle.BaseLifecycleApplication
+import com.permissionx.guolindev.PermissionX
 
 /**
  * =================================================================================================

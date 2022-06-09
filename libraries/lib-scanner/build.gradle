@@ -34,7 +34,7 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$androidxActivityKtx"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayout"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwiperefreshlayout"
-    implementation "com.permissionx.guolindev:permissionx:$comPermissionxGuolindevPermissionx"
+    implementation "com.guolindev.permissionx:permissionx:$comGuolindevPermissionx"
 
     api project(":libraries:dependencies:lib-scanner-pda-chiteng-jar")
     api project(":libraries:dependencies:lib-scanner-phone")

@@ -16,7 +16,7 @@ ext {
     androidxCoreKtx = '1.7.0'
     orgJetbrainsKotlinxCoroutinesAndroid = '1.6.0'
 
-    androidxAppcompat = '1.4.1'
+    androidxAppcompat = '1.4.2'
 
     androidxActivityKtx = '1.4.0'
 
@@ -56,5 +56,5 @@ ext {
     comTencentBuglyCrashreport = '3.3.3'
     comTencentBuglyNativecrashreport = '3.9.2'
 
-    comPermissionxGuolindevPermissionx = '1.4.0'
+    comGuolindevPermissionx = '1.6.3'
 }

@@ -1,10 +1,23 @@
 package com.af.lib.utils
 
-import android.content.Context
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Environment
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.af.lib.compat.AndroidVersionCompat
 import com.af.lib.compat.AndroidVersionCompatible
+import com.af.lib.ktext.toast
+import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.callback.ExplainReasonCallback
+import com.permissionx.guolindev.callback.ForwardToSettingsCallback
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.io.File
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -31,15 +44,78 @@ object UUIDCompat {
 
     private const val TAG = "uuid"
 
-    suspend fun getUUID(context: Context): String? {
+    suspend fun getUUID(activity: AppCompatActivity): String? = withContext(Dispatchers.Main) {
 
         val sn = SNCompat.getSN()
 
-        val imei = IMEICompat.getIMEI(context)
+        val imei = IMEICompat.getIMEI(activity)
 
-        return suspendCoroutine { continuation ->
+        return@withContext suspendCoroutine { continuation ->
 
             AndroidVersionCompat.compat(object : AndroidVersionCompatible {
+
+                override fun compatWithQ(): Boolean {
+
+                    val directory = "${Environment.getExternalStorageDirectory()}/lyy/${activity.packageName}"
+                    val directoryFile = File(directory)
+                    if (!directoryFile.exists()) {
+                        directoryFile.mkdirs()
+                    }
+                    val path = "$directory/uuid"
+                    val file = File(path)
+                    if (!file.isFile) {
+                        // 需要获取权限
+                        PermissionX.init(activity)
+                            .permissions(arrayListOf(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                            .explainReasonBeforeRequest()
+                            .onExplainRequestReason { scope, deniedList ->
+                                scope.showRequestReasonDialog(
+                                    deniedList,
+                                    "应用需要获得设备外部存储空间读写权限，用于获取设备 UUID",
+                                    "同意",
+                                    "拒绝"
+                                )
+                            }
+                            .onForwardToSettings { scope, deniedList ->
+                                if (deniedList.isNotEmpty()) {
+                                    scope.showForwardToSettingsDialog(
+                                        deniedList,
+                                        "应用需要获得设备外部存储空间读写权限，用于获取设备 UUID",
+                                        "去设置",
+                                        "再想想"
+                                    )
+                                }
+                            }
+                            .request { allGranted, grantedList, deniedList ->
+
+                                if (allGranted) {
+                                    file.createNewFile()
+                                    Log.d(TAG, "uuid save in: $path")
+                                    var uuid = file.readText()
+                                    if (uuid.isNotEmpty()) {
+                                        continuation.resume(uuid)
+                                    } else {
+                                        val deviceId = SystemProperties.getRoBuildFingerprint()
+                                        uuid = UUIDBean(sn, imei, deviceId).toUUID()
+                                        file.writeText(uuid)
+                                        continuation.resume(uuid)
+                                    }
+                                }
+                            }
+                    } else {
+                        Log.d(TAG, "uuid save in: $path")
+                        var uuid = file.readText()
+                        if (uuid.isNotEmpty()) {
+                            continuation.resume(uuid)
+                        } else {
+                            val deviceId = SystemProperties.getRoBuildFingerprint()
+                            uuid = UUIDBean(sn, imei, deviceId).toUUID()
+                            file.writeText(uuid)
+                            continuation.resume(uuid)
+                        }
+                    }
+                    return true
+                }
 
                 override fun compatWithDefault() {
 
