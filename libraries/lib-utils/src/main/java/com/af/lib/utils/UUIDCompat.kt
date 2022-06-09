@@ -43,7 +43,7 @@ object UUIDCompat {
 
     private const val TAG = "uuid"
 
-    suspend fun getUUID(activity: AppCompatActivity): String? = withContext(Dispatchers.Main) {
+    suspend fun getUUID(activity: AppCompatActivity, androidRAllFilesAccessPermissionRequestCode: Int): String? = withContext(Dispatchers.Main) {
 
         val newUUID = newUUID(activity)
 
@@ -71,7 +71,7 @@ object UUIDCompat {
                         // 请求用户授权
                         val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                         intent.data = Uri.parse("package:${activity.packageName}")
-                        activity.startActivityForResult(intent, 0x0001)
+                        activity.startActivityForResult(intent, androidRAllFilesAccessPermissionRequestCode)
                     }
                     return true
                 }

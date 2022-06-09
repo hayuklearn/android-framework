@@ -34,7 +34,7 @@ import java.util.UUID;
  * 2、根据设备唯一码通过标签组合成各不相同的 appId 与服务端通讯
  * 3、管理 app 只传设备 ID 即可，业务 app 需要传设备 ID、新旧 appId 三个值
  */
-public class UUIDLegacy {
+class UUIDLegacy {
 
     private static final String TAG = "uuid";
 

@@ -1,6 +1,5 @@
 package com.af.template
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.af.lib.ktext.toast
@@ -9,7 +8,6 @@ import com.af.lib.utils.UUIDCompat
 import com.af.template.base.BaseActivity
 import com.af.template.databinding.TemplateActivityEntryBinding
 import com.lyy.database.SecurityDatabaseHelper
-import com.permissionx.guolindev.PermissionX
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,7 +47,7 @@ class EntryActivity : BaseActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
 
-                Log.d("uuid", UUIDCompat.getUUID(this@EntryActivity) ?: "")
+                Log.d("uuid", UUIDCompat.getUUID(this@EntryActivity, 0x0001) ?: "")
             }
         }
         binding.database.setOnClickListener {
